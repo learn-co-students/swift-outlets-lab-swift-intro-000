@@ -69,6 +69,7 @@ struct SimonSays {
 // MARK: - Gameplay methods
 extension SimonSays {
 
+    // used inside displayTheColors() in ViewController
     mutating func nextColor() -> Color? {
         var color: Color? = nil
         if colorToDisplay < patternToMatch.count {
@@ -77,36 +78,60 @@ extension SimonSays {
         colorToDisplay += 1
         return color
     }
-
+    
+// used inside displayTheColors() in ViewController
     func sequenceFinished() -> Bool {
         return colorToDisplay > patternToMatch.count
     }
 
     func wonGame() -> Bool {
         return chosenColors == patternToMatch
+        
     }
     
     fileprivate mutating func makeGuessWith(_ color: Color) -> Bool {
         guard chosenColors.count < patternToMatch.count else { return false }
         chosenColors.append(color)
+        print(patternToMatch)
+        print(chosenColors)
+        print(patternToMatch[chosenColors.count - 1] == color)
         return patternToMatch[chosenColors.count - 1] == color
     }
 
-    mutating func guessRed() {
-        makeGuessWith(.red)
+    mutating func guessRed() -> Bool{
+        if makeGuessWith(.red) {
+            return true
+        } else {
+            tryAgainWithTheSamePattern()
+            return false
+        }
+        
     }
     
-    mutating func guessGreen() {
-        makeGuessWith(.green)
+    mutating func guessGreen() -> Bool{
+        let isCorrect = makeGuessWith(.green)
+        if !isCorrect {
+            tryAgainWithTheSamePattern()
+        }
+        return isCorrect
     }
     
-    mutating func guessYellow() {
-        makeGuessWith(.yellow)
+    mutating func guessYellow() -> Bool{
+        let isCorrect = makeGuessWith(.yellow)
+        if !isCorrect{
+            tryAgainWithTheSamePattern()
+        }
+        return isCorrect
     }
     
-    mutating func guessBlue() {
-        makeGuessWith(.blue)
+    mutating func guessBlue() -> Bool{
+        let isCorrect = makeGuessWith(.blue)
+        if !isCorrect {
+            tryAgainWithTheSamePattern()
+        }
+        return isCorrect
     }
+    
     
     mutating func tryAgainWithTheSamePattern() {
         chosenColors.removeLast()
