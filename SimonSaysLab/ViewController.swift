@@ -13,6 +13,26 @@ class ViewController: UIViewController {
     @IBOutlet weak var displayColorView: UIView!
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var winLabel: UILabel!
+    @IBOutlet weak var redBox: UIView!
+    @IBOutlet weak var greenBox: UIView!
+    @IBOutlet weak var yellowBox: UIView!
+    @IBOutlet weak var blueBox: UIView!
+    
+    @IBAction func redButton(_ sender: UIButton) {
+    }
+    
+    @IBAction func greenButton(_ sender: UIButton) {
+    }
+    
+    @IBAction func yellowButton(_ sender: UIButton) {
+    }
+    
+    @IBAction func blueButton(_ sender: UIButton) {
+    }
+    
+    // testButton is just that. Made as outlet compared to the four buttons above as action.
+    @IBOutlet weak var testButton: UIButton!
+    
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
     
