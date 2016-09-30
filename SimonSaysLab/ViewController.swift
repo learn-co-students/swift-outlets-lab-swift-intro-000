@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var blueBox: UIView!
     
     @IBAction func redButton(_ sender: UIButton) {
+        
     }
     
     @IBAction func greenButton(_ sender: UIButton) {
@@ -30,21 +31,43 @@ class ViewController: UIViewController {
     @IBAction func blueButton(_ sender: UIButton) {
     }
     
-    // testButton is just that. Made as outlet compared to the four buttons above as action.
-    @IBOutlet weak var testButton: UIButton!
-    
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideInitially()
+    }
+    
+    func hideInitially() {
+        winLabel.isHidden = true
+        redBox.isHidden = true
+        greenBox.isHidden = true
+        yellowBox.isHidden = true
+        blueBox.isHidden = true
+        displayColorView.isHidden = true
+    }
+    
+    func revealNow() {
+        winLabel.isHidden = false
+        redBox.isHidden = false
+        greenBox.isHidden = false
+        yellowBox.isHidden = false
+        blueBox.isHidden = false
+        displayColorView.isHidden = false
     }
 }
+
+/*
+ TODO:
+    - everytime the color changes, simon says will also display the actual color it's being changed to
+ */
 
 // MARK: - SimonSays Game Methods
 extension ViewController {
     
     @IBAction func startGameTapped(_ sender: UIButton) {
+        revealNow()
         UIView.transition(with: startGameButton, duration: 0.9, options: .transitionFlipFromBottom , animations: {
             self.startGameButton.isHidden = true
             }, completion: nil)
