@@ -8,28 +8,52 @@
 
 import UIKit
 
+/*
+ TODO:
+    - gameWon() isnt triggering, so either the color isnt being registered/received or the colors arent connect to send
+    - Find out which ibaction func to dump these under, either the viewdidLoad or the gamestarttapped.
+ */
+
 class ViewController: UIViewController {
     
     @IBOutlet weak var displayColorView: UIView!
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var winLabel: UILabel!
-    @IBOutlet weak var redBox: UIView!
-    @IBOutlet weak var greenBox: UIView!
-    @IBOutlet weak var yellowBox: UIView!
-    @IBOutlet weak var blueBox: UIView!
     
     @IBAction func redButton(_ sender: UIButton) {
-        
+        simonSaysGame.guessRed()
+        buttonsClicked += 1
+        print("\(buttonsClicked) || Touched Red")
     }
     
     @IBAction func greenButton(_ sender: UIButton) {
+        simonSaysGame.guessGreen()
+        buttonsClicked += 1
+        print("\(buttonsClicked) || Touched Green")
     }
     
     @IBAction func yellowButton(_ sender: UIButton) {
+        simonSaysGame.guessYellow()
+        buttonsClicked += 1
+        print("\(buttonsClicked) || Touched Yellow")
     }
     
     @IBAction func blueButton(_ sender: UIButton) {
+        simonSaysGame.guessBlue()
+        buttonsClicked += 1
+        print("\(buttonsClicked) || Touched Blue")
     }
+    
+    func hideInitially() {
+        winLabel.isHidden = true
+        displayColorView.isHidden = true
+    }
+    
+    func revealNow() {
+        winLabel.isHidden = false
+        displayColorView.isHidden = false
+    }
+
     
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
@@ -39,29 +63,7 @@ class ViewController: UIViewController {
         hideInitially()
     }
     
-    func hideInitially() {
-        winLabel.isHidden = true
-        redBox.isHidden = true
-        greenBox.isHidden = true
-        yellowBox.isHidden = true
-        blueBox.isHidden = true
-        displayColorView.isHidden = true
     }
-    
-    func revealNow() {
-        winLabel.isHidden = false
-        redBox.isHidden = false
-        greenBox.isHidden = false
-        yellowBox.isHidden = false
-        blueBox.isHidden = false
-        displayColorView.isHidden = false
-    }
-}
-
-/*
- TODO:
-    - everytime the color changes, simon says will also display the actual color it's being changed to
- */
 
 // MARK: - SimonSays Game Methods
 extension ViewController {
@@ -73,6 +75,13 @@ extension ViewController {
             }, completion: nil)
         
         displayTheColors()
+        
+        
+        if simonSaysGame.wonGame() {
+            print("Conditions fulfilled, game won")
+            winLabel.text = "You Won!"
+        }
+
     }
     
     fileprivate func displayTheColors() {
