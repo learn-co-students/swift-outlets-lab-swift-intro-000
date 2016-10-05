@@ -19,6 +19,54 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    @IBAction func blueButtonTapped(_ sender: AnyObject) {
+        
+        simonSaysGame.guessBlue()
+        
+        checkGame()
+        print(buttonsClicked)
+    }
+    @IBAction func yellowButtonTapped(_ sender: AnyObject) {
+        
+        simonSaysGame.guessYellow()
+        
+        checkGame()
+        print(buttonsClicked)
+    }
+        
+    @IBAction func greenButtonTapped(_ sender: AnyObject) {
+        
+        simonSaysGame.guessGreen()
+        
+        checkGame()
+        print(buttonsClicked)
+
+    }
+    
+    @IBAction func redButtonTapped(_ sender: UIButton) {
+        
+        simonSaysGame.guessRed()
+        
+        checkGame()
+        print(buttonsClicked)
+}
+    
+    func checkGame() {
+        buttonsClicked += 1
+        if self.simonSaysGame.numberOfColorsToMatch == self.buttonsClicked {
+            print(self.buttonsClicked)
+            if self.simonSaysGame.wonGame() {
+                self.winLabel.isHidden = false
+                self.winLabel.text = "You Won"
+            }else {
+                self.winLabel.isHidden = false
+                self.winLabel.text = "You lost"
+            }
+        }
+    }
+
+
 }
 
 // MARK: - SimonSays Game Methods
@@ -30,7 +78,8 @@ extension ViewController {
             }, completion: nil)
         
         displayTheColors()
-    }
+        
+            }
     
     fileprivate func displayTheColors() {
         self.view.isUserInteractionEnabled = false
@@ -44,7 +93,10 @@ extension ViewController {
                 } else {
                     self.view.isUserInteractionEnabled = true
                     print("Pattern to match: \(self.simonSaysGame.patternToMatch)")
+                    
                 }
+                
         })
     }
+    
 }
