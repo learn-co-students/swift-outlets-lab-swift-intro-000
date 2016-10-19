@@ -16,9 +16,32 @@ class ViewController: UIViewController {
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    @IBAction func tappedRed(_ sender: AnyObject) {
     }
+   
+    
+    @IBAction func tappedWhite(_ sender: AnyObject) {
+    }
+
+    @IBAction func tappedGreen(_ sender: AnyObject) {
+    }
+  
+    @IBAction func tappedBlack(_ sender: AnyObject) {
+    }
+
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        hideAllLabel()
+    }
+}
+
+func hideAllLabel() {
+    
+    winLabel.isHidden = true
+
 }
 
 // MARK: - SimonSays Game Methods
@@ -31,6 +54,14 @@ extension ViewController {
         
         displayTheColors()
     }
+    
+    func  simonSaysGame.guessRed() {
+    
+    
+    
+    
+    
+    
     
     fileprivate func displayTheColors() {
         self.view.isUserInteractionEnabled = false
