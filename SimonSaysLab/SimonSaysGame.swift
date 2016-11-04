@@ -89,11 +89,14 @@ extension SimonSays {
     fileprivate mutating func makeGuessWith(_ color: Color) -> Bool {
         guard chosenColors.count < patternToMatch.count else { return false }
         chosenColors.append(color)
+        print("Colors picked: \(chosenColors.count)")
         return patternToMatch[chosenColors.count - 1] == color
+        
     }
 
     mutating func guessRed() {
         makeGuessWith(.red)
+        
     }
     
     mutating func guessGreen() {
