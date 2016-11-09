@@ -65,7 +65,6 @@ struct SimonSays {
     }
 }
 
-
 // MARK: - Gameplay methods
 extension SimonSays {
 
@@ -85,31 +84,43 @@ extension SimonSays {
     func wonGame() -> Bool {
         return chosenColors == patternToMatch
     }
-    
+    //add color to chosenColors, then check against patternToMatch for a match
     fileprivate mutating func makeGuessWith(_ color: Color) -> Bool {
         guard chosenColors.count < patternToMatch.count else { return false }
         chosenColors.append(color)
+        print(" patternToMatchCount \(patternToMatch[chosenColors.count - 1]) - \(chosenColors[chosenColors.count - 1])")
         return patternToMatch[chosenColors.count - 1] == color
     }
 
     mutating func guessRed() {
-        makeGuessWith(.red)
+        if makeGuessWith(.red){
+
+        }
     }
     
     mutating func guessGreen() {
-        makeGuessWith(.green)
+        
+        if makeGuessWith(.green){
+            
+        }
+        
     }
     
     mutating func guessYellow() {
-        makeGuessWith(.yellow)
+        if makeGuessWith(.yellow){
+            
+        }
     }
     
     mutating func guessBlue() {
-        makeGuessWith(.blue)
+        if  makeGuessWith(.blue){
+            
+        }
     }
     
     mutating func tryAgainWithTheSamePattern() {
         chosenColors.removeLast()
         // display the colors in order again to the user (up to the turn)
     }
+    
 }
