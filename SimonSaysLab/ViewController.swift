@@ -45,22 +45,23 @@ class ViewController: UIViewController {
         winLabel.isHidden = true
     }
     
+    func gameResults() {
+        if simonSaysGame.wonGame() {
+            winLabel.isHidden = false
+            winLabel.text = "You won!"
+        }
+        else if buttonsClicked == simonSaysGame.numberOfColorsToMatch && simonSaysGame.wonGame() == false {
+            winLabel.isHidden = false
+            winLabel.text = "Aww, so close!"
+        } else {
+            winLabel.isHidden = true
+        }
+    }
 }
 
 
 // MARK: - SimonSays Game Methods
 extension ViewController {
-    
-    func gameResults() {
-        if buttonsClicked == simonSaysGame.numberOfColorsToMatch {
-            winLabel.isHidden = false
-            winLabel.text = "You won!"
-        }  else {
-            winLabel.isHidden = false
-            winLabel.text = "Nope, try again."
-        }
-    }
-    
     
     @IBAction func startGameTapped(_ sender: UIButton) {
         UIView.transition(with: startGameButton, duration: 0.9, options: .transitionFlipFromBottom , animations: {
