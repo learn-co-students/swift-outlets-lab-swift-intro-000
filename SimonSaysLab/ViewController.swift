@@ -13,54 +13,62 @@ class ViewController: UIViewController {
     @IBOutlet weak var displayColorView: UIView!
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var winLabel: UILabel!
-   
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
-    var pattern: SimonSays!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         winLabel.isHidden = true
-        Won()
     }
-
-    @IBAction func redBoxPressed(_ sender: Any) {
-        simonSaysGame.guessRed()
-    }
-
-    @IBAction func greenBoxPressed(_ sender: Any) {
+    
+    @IBAction func greenBtnPressed(_ sender: UIButton) {
+        
         simonSaysGame.guessGreen()
+        buttonsClicked += 1
+        gameResults()
+        
     }
     
-    @IBAction func yellowBoxPressed(_ sender: Any) {
-        simonSaysGame.guessYellow()
-    }
-    
-    @IBAction func blueBoxPressed(_ sender: Any) {
+    @IBAction func blueBtnPressed(_ sender: UIButton) {
+        
         simonSaysGame.guessBlue()
+        buttonsClicked += 1
+        
+        gameResults()
+    }
+    
+    @IBAction func redBtnPressed(_ sender: UIButton) {
+        
+        simonSaysGame.guessRed()
+        buttonsClicked += 1
+        
+        gameResults()
         
     }
     
-    func Won() {
+    @IBAction func yellowBtnPressed(_ sender: UIButton) {
         
-        if simonSaysGame.chosenColors == simonSaysGame.patternToMatch {
-            
+        simonSaysGame.guessYellow()
+        buttonsClicked += 1
+        
+        gameResults()
+        
+    }
+    
+    func gameResults() {
+        if simonSaysGame.wonGame() {
             winLabel.isHidden = false
             winLabel.text = "You won!"
         }
-        
-        else {
             
+        else if buttonsClicked == simonSaysGame.numberOfColorsToMatch && simonSaysGame.wonGame() == false {
             winLabel.isHidden = false
-            winLabel.text = "Try again..."
-            simonSaysGame.tryAgainWithTheSamePattern()
+            winLabel.text = "Aww, so close!"
+        } else {
+            winLabel.isHidden = true
         }
     }
-
-    
-    
-    
     
     
 }
@@ -71,7 +79,7 @@ extension ViewController {
     @IBAction func startGameTapped(_ sender: UIButton) {
         UIView.transition(with: startGameButton, duration: 0.9, options: .transitionFlipFromBottom , animations: {
             self.startGameButton.isHidden = true
-            }, completion: nil)
+        }, completion: nil)
         
         displayTheColors()
     }
@@ -82,14 +90,13 @@ extension ViewController {
             self.displayColorView.backgroundColor = self.simonSaysGame.nextColor()?.colorToDisplay
             self.displayColorView.alpha = 0.0
             self.displayColorView.alpha = 1.0
-            }, completion: { _ in
-                if !self.simonSaysGame.sequenceFinished() {
-                    self.displayTheColors()
-                } else {
-                    self.view.isUserInteractionEnabled = true
-                    print("Pattern to match: \(self.simonSaysGame.patternToMatch)")
-                }
+        }, completion: { _ in
+            if !self.simonSaysGame.sequenceFinished() {
+                self.displayTheColors()
+            } else {
+                self.view.isUserInteractionEnabled = true
+                print("Pattern to match: \(self.simonSaysGame.patternToMatch)")
+            }
         })
     }
-    
 }
