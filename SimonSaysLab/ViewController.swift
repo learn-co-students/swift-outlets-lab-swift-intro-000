@@ -10,6 +10,13 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    
+    @IBOutlet weak var redButton: UIButton!
+    @IBOutlet weak var greenButton: UIButton!
+    @IBOutlet weak var yellowButton: UIButton!
+    @IBOutlet weak var blueButton: UIButton!
+    
+    
     @IBOutlet weak var displayColorView: UIView!
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var winLabel: UILabel!
@@ -18,6 +25,41 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    @IBAction func buttonTapped(_ sender: UIButton) {
+        buttonsClicked = buttonsClicked + 1
+
+        
+        switch sender {
+        case redButton: simonSaysGame.guessRed()
+        case greenButton: simonSaysGame.guessGreen()
+        case yellowButton: simonSaysGame.guessYellow()
+        case blueButton: simonSaysGame.guessBlue()
+        default: return
+        }
+        
+        updateWinner()
+    }
+    
+    func updateWinner() {
+        if simonSaysGame.chosenColors.count == simonSaysGame.patternToMatch.count {
+            print(simonSaysGame.chosenColors)
+            if simonSaysGame.wonGame() {
+                winLabel.text = "You won"
+            } else {
+                winLabel.text = "You lost"
+            }
+            winLabel.isHidden = false
+            startGameButton.isHidden = false
+            buttonsClicked = 0
+            simonSaysGame = SimonSays()
+            
+            
+        } else {
+            winLabel.text = "Select " + String(simonSaysGame.patternToMatch.count - simonSaysGame.chosenColors.count) + " more colours"
+            winLabel.isHidden = false
+        }
     }
 }
 
@@ -29,6 +71,7 @@ extension ViewController {
             self.startGameButton.isHidden = true
             }, completion: nil)
         
+        startGameButton.isHidden = true
         displayTheColors()
     }
     
