@@ -83,6 +83,7 @@ extension SimonSays {
     }
 
     func wonGame() -> Bool {
+        // color user chose equal color simon said
         return chosenColors == patternToMatch
     }
     
