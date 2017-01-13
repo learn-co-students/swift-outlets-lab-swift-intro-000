@@ -66,9 +66,11 @@ There's still a lot of work to be done, though. Here's what you need to do to fi
 2. Create IB actions for each of the colored buttons in the view controller, and wire them up to these actions.
 3. Hide the `winLabel` when the view initially loads. It shouldn't be shown until the game is over.
 4. Fill in the logic for the IB actions you created in \#2. When a button is tapped, you should let the game engine know that a guess has been made. For example, when the yellow button is tapped, you should call `simonSaysGame.guessYellow()` to record that guess. Do this for each of the buttons. Remember that you can use Xcode's autocomplete function to help you with this code; it will suggest methods you can call on `simonSaysGame` to record these guesses.
-5. Once you can determine if the user has won or lost, change the text in the `winLabel` to indicate if the user won or lost. Remember, `simonSaysGame` has a `gameWon()` method that will return `true` if the user won the game.
+5. Once you can determine if the user has won or lost, change the text in the `winLabel` to indicate if the user won or lost. Remember, `simonSaysGame` has a `wonGame()` method that will return `true` if the user won the game.
 6. If your game is up and running, give yourself a pat on the back. Depending on how you implemented the methods to make `simonSaysGame` work with your buttons, you might see a lot of repetition with your code. Think of ways you could make your code more readable with less repetition. If you see yourself copying and pasting the same code over and over again, look to create a helper function that can perform these repetitive tasks for you. The argument(s) to this helper function should be the difference(s) between the repeated code.
 
 You may find this lab to be challenging, but if you use everything you've learned in previous labs, you can complete it. Simon Says: Make this app work!
 
 <a href='https://learn.co/lessons/OutletLab' data-visibility='hidden'>View this lesson on Learn.co</a>
+
+<p class='util--hide'>View <a href='https://learn.co/lessons/swift-outlets-lab'>Outlets Lab</a> on Learn.co and start learning to code for free.</p>
