@@ -52,7 +52,10 @@ struct SimonSays {
     var chosenColors = [Color]()
     var patternToMatch = [Color]()
     var colorToDisplay = 0
+    var gameRepeat = true
+    var gameNumber = 1
     let numberOfColorsToMatch: Int
+    
     
     init(numberOfColorsToMatch: Int = 5) {
         self.numberOfColorsToMatch = numberOfColorsToMatch
@@ -68,7 +71,14 @@ struct SimonSays {
 
 // MARK: - Gameplay methods
 extension SimonSays {
-
+    
+    mutating func resetColors(numberOfColorsToMatch: Int = 5) {
+        for _ in (0..<numberOfColorsToMatch) {
+            let randomNumber = Int(arc4random_uniform(4))
+            let randomColor = Color(rawValue: randomNumber)!
+            patternToMatch.append(randomColor)
+        }
+    }
     mutating func nextColor() -> Color? {
         var color: Color? = nil
         if colorToDisplay < patternToMatch.count {
@@ -108,8 +118,10 @@ extension SimonSays {
         makeGuessWith(.blue)
     }
     
-    mutating func tryAgainWithTheSamePattern() {
-        chosenColors.removeLast()
-        // display the colors in order again to the user (up to the turn)
+    mutating func tryAgainWithTheSamePattern(numberOfColorsToMatch: Int = 5, _ pattern: [Color]) {
+        patternToMatch.removeAll()
+        for i in (0..<numberOfColorsToMatch) {
+            patternToMatch.append(pattern[i])
+        }
     }
 }
