@@ -29,7 +29,6 @@ extension Color {
     }
 }
 
-
 // MARK: - CustomStringConvertible Protocol
 extension Color: CustomStringConvertible {
     var description: String {
@@ -46,16 +45,13 @@ extension Color: CustomStringConvertible {
     }
 }
 
-
 struct SimonSays {
-    
     var chosenColors = [Color]()
     var patternToMatch = [Color]()
     var colorToDisplay = 0
     var gameRepeat = true
     var gameNumber = 1
     let numberOfColorsToMatch: Int
-    
     
     init(numberOfColorsToMatch: Int = 5) {
         self.numberOfColorsToMatch = numberOfColorsToMatch
@@ -68,10 +64,8 @@ struct SimonSays {
     }
 }
 
-
 // MARK: - Gameplay methods
 extension SimonSays {
-    
     mutating func resetColors(numberOfColorsToMatch: Int = 5) {
         for _ in (0..<numberOfColorsToMatch) {
             let randomNumber = Int(arc4random_uniform(4))

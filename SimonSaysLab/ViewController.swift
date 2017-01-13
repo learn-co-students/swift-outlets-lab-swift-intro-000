@@ -20,7 +20,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var blueButton: UIButton!
     
     var simonSaysGame = SimonSays()
-    var userPicks = [Color]()
     var buttonsClicked = 0
     
     override func viewDidLoad() {
@@ -67,7 +66,6 @@ class ViewController: UIViewController {
     func restartGame(didWin: Bool) {
         print("(\(self.simonSaysGame.gameNumber)) User chose pattern: \(self.simonSaysGame.chosenColors)")
         wait(seconds: 1, showAlpha: 0.0, restart: true)
-        userPicks.removeAll()
         pressCount = 0
         simonSaysGame.colorToDisplay = 0
         simonSaysGame.chosenColors.removeAll()
@@ -103,7 +101,6 @@ class ViewController: UIViewController {
     }
     @IBAction func bluePressed(_ sender: Any) {
         simonSaysGame.guessBlue()
-        userPicks.append(.blue)
         pressCount += 1
         gameProgress(pressCount)
     }
