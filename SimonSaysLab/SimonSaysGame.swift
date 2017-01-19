@@ -71,7 +71,7 @@ extension SimonSays {
 
     mutating func nextColor() -> Color? {
         var color: Color? = nil
-        if colorToDisplay < patternToMatch.count {
+        if colorToDisplay < patternToMatch.count	{
             color = patternToMatch[colorToDisplay]
         }
         colorToDisplay += 1
@@ -88,24 +88,35 @@ extension SimonSays {
     
     fileprivate mutating func makeGuessWith(_ color: Color) -> Bool {
         guard chosenColors.count < patternToMatch.count else { return false }
+        
         chosenColors.append(color)
         return patternToMatch[chosenColors.count - 1] == color
     }
 
     mutating func guessRed() {
-        makeGuessWith(.red)
+        print(makeGuessWith(.red))
+        if  makeGuessWith(.red){
+            
+        }
     }
-    
+
+
     mutating func guessGreen() {
-        makeGuessWith(.green)
+        if  makeGuessWith(.green){
+            
+        }
     }
     
     mutating func guessYellow() {
-        makeGuessWith(.yellow)
+        if makeGuessWith(.yellow){
+            
+        }
     }
     
     mutating func guessBlue() {
-        makeGuessWith(.blue)
+        if  makeGuessWith(.blue){
+            
+        }
     }
     
     mutating func tryAgainWithTheSamePattern() {
