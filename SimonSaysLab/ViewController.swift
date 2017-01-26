@@ -10,14 +10,36 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    
     @IBOutlet weak var displayColorView: UIView!
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var winLabel: UILabel!
+    @IBAction func pushRed(_ sender: UIButton) {
+        simonSaysGame.guessRed()
+        checkStatus()
+    }
+    
+    @IBAction func pushGreen(_ sender: UIButton) {
+        simonSaysGame.guessGreen()
+        checkStatus()
+    }
+    @IBAction func pushYellow(_ sender: UIButton) {
+        simonSaysGame.guessYellow()
+        checkStatus()
+    }
+    @IBAction func pushBlue(_ sender: UIButton) {
+        simonSaysGame.guessBlue()
+        checkStatus()
+    }
+    
+    
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
     
     override func viewDidLoad() {
+        winLabel.isHidden = true
         super.viewDidLoad()
+        
     }
 }
 
@@ -28,7 +50,7 @@ extension ViewController {
         UIView.transition(with: startGameButton, duration: 0.9, options: .transitionFlipFromBottom , animations: {
             self.startGameButton.isHidden = true
             }, completion: nil)
-        
+        winLabel.isHidden = false
         displayTheColors()
     }
     
@@ -47,4 +69,21 @@ extension ViewController {
                 }
         })
     }
+    
+    func checkStatus() {
+        switch simonSaysGame.sequenceFinished() {
+            case true: checkWin()
+            default: return
+        }
+    }
+    
+    func checkWin() {
+        if simonSaysGame.wonGame() == true {
+            winLabel.text = "Game won!"
+            startGameButton.isHidden = false
+        } else {
+            winLabel.text = "Nope try again"
+        }
+    }
+
 }
