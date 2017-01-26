@@ -24,7 +24,7 @@ class ViewController: UIViewController {
 // MARK: - SimonSays Game Methods
 extension ViewController {
     
-    @IBAction func startGameTapped(_ sender: UIButton) {
+    @IBAction func startGameTapped(sender: UIButton) {
         UIView.transition(with: startGameButton, duration: 0.9, options: .transitionFlipFromBottom , animations: {
             self.startGameButton.isHidden = true
             }, completion: nil)
