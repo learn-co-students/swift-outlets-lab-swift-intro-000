@@ -93,19 +93,27 @@ extension SimonSays {
     }
 
     mutating func guessRed() {
-        makeGuessWith(.red)
+        if !makeGuessWith(.red) {
+            print("Wrong guess Red")
+        }
     }
     
     mutating func guessGreen() {
-        makeGuessWith(.green)
+        if !makeGuessWith(.green) {
+            print("Wrong guess Green")
+        }
     }
     
     mutating func guessYellow() {
-        makeGuessWith(.yellow)
+        if !makeGuessWith(.yellow) {
+            print("Wrong guess Yellow")
+        }
     }
     
     mutating func guessBlue() {
-        makeGuessWith(.blue)
+        if !makeGuessWith(.blue) {
+           print("Wrong guess Blue") 
+        }
     }
     
     mutating func tryAgainWithTheSamePattern() {
