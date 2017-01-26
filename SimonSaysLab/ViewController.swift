@@ -10,6 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    
+    @IBOutlet weak var redBox: UIView!
+    @IBOutlet weak var greenBox: UIView!
+    @IBOutlet weak var yellowBox: UIView!
+    @IBOutlet weak var blueBox: UIView!
+    
     @IBOutlet weak var displayColorView: UIView!
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var winLabel: UILabel!
@@ -18,6 +24,41 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        winLabel.isHidden = true
+    }
+    @IBAction func buttonClicked(_ sender: UIButton) {
+        buttonsClicked += 1
+        
+        switch sender {
+        case redBox:
+            simonSaysGame.guessRed()
+        case greenBox:
+            simonSaysGame.guessGreen()
+        case yellowBox:
+            simonSaysGame.guessYellow()
+        case blueBox:
+            simonSaysGame.guessBlue()
+        default:
+            return
+        }
+        
+        checkForWinner()
+    }
+    
+    func checkForWinner() {
+        if buttonsClicked == simonSaysGame.numberOfColorsToMatch {
+            if simonSaysGame.wonGame() {
+                winLabel.text = "Congratulations"
+            } else {
+                winLabel.text = "Sorry - that's not correct"
+            }
+            simonSaysGame = SimonSays()
+            buttonsClicked = 0
+            startGameButton.isHidden = false
+        } else {
+            winLabel.text = "\(simonSaysGame.numberOfColorsToMatch - buttonsClicked) guess to go..."
+        }
     }
 }
 
@@ -29,6 +70,8 @@ extension ViewController {
             self.startGameButton.isHidden = true
             }, completion: nil)
         
+        winLabel.isHidden = false
+        winLabel.text = "Choosing colors..."
         displayTheColors()
     }
     
@@ -44,6 +87,8 @@ extension ViewController {
                 } else {
                     self.view.isUserInteractionEnabled = true
                     print("Pattern to match: \(self.simonSaysGame.patternToMatch)")
+                    
+                    self.checkForWinner()
                 }
         })
     }
