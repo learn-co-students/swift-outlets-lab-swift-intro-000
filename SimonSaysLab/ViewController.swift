@@ -10,6 +10,16 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBAction func redBtn(_ sender: Any) {
+    }
+    @IBAction func blueBtn(_ sender: Any) {
+    }
+    @IBAction func yellowBtn(_ sender: Any) {
+    }
+    @IBAction func greenBtn(_ sender: Any) {
+    }
+    
+    
     @IBOutlet weak var displayColorView: UIView!
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var winLabel: UILabel!
