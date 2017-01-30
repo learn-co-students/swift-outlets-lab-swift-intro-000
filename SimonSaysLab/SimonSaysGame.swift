@@ -83,6 +83,7 @@ extension SimonSays {
     }
 
     func wonGame() -> Bool {
+        //print("Testing if - \(chosenColors) matches \(patternToMatch)")
         return chosenColors == patternToMatch
     }
     
