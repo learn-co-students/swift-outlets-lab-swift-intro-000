@@ -10,24 +10,56 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBAction func redBtn(_ sender: Any) {
-    }
-    @IBAction func blueBtn(_ sender: Any) {
-    }
-    @IBAction func yellowBtn(_ sender: Any) {
-    }
-    @IBAction func greenBtn(_ sender: Any) {
-    }
+    
     
     
     @IBOutlet weak var displayColorView: UIView!
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var winLabel: UILabel!
+    
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        winLabel.isHidden = true
+    }
+    
+    @IBAction func redBtn(_ sender: Any) {
+        simonSaysGame.guessRed()
+        checkGameStatus()
+    }
+    @IBAction func blueBtn(_ sender: Any) {
+        simonSaysGame.guessBlue()
+        checkGameStatus()
+    }
+    @IBAction func yellowBtn(_ sender: Any) {
+        simonSaysGame.guessYellow()
+        checkGameStatus()
+    }
+    @IBAction func greenBtn(_ sender: Any) {
+        simonSaysGame.guessGreen()
+        checkGameStatus()
+    }
+
+    
+    func checkGameStatus() {
+        if simonSaysGame.wonGame() {
+            print("Won Game")
+            winLabel.text = "You Win!"
+            winLabel.isHidden = false
+            restartGame()
+        } else if simonSaysGame.chosenColors.count == simonSaysGame.numberOfColorsToMatch {
+            print("lost game")
+            winLabel.text = "You lost"
+            winLabel.isHidden = false
+            restartGame()
+        }
+    }
+    
+    func restartGame() {
+        simonSaysGame = SimonSays()
+        startGameButton.isHidden = false
     }
 }
 
