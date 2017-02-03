@@ -83,7 +83,13 @@ extension SimonSays {
     }
 
     func wonGame() -> Bool {
+        
+        
         return chosenColors == patternToMatch
+        
+        
+        
+        
     }
     
     fileprivate mutating func makeGuessWith(_ color: Color) -> Bool {
