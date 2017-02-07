@@ -13,11 +13,35 @@ class ViewController: UIViewController {
     @IBOutlet weak var displayColorView: UIView!
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var winLabel: UILabel!
+    
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
     
+    @IBAction func redButtonPress(_ sender: Any) {
+        simonSaysGame.guessRed()
+        buttonsClicked += 1
+        checkStatus(buttonsClicked)
+    }
+    @IBAction func greenButtonPress(_ sender: Any) {
+        simonSaysGame.guessGreen()
+        buttonsClicked += 1
+        checkStatus(buttonsClicked)
+    }
+    @IBAction func yellowButtonPress(_ sender: Any) {
+        simonSaysGame.guessYellow()
+        buttonsClicked += 1
+        checkStatus(buttonsClicked)
+    }
+    @IBAction func blueButtonPress(_ sender: Any) {
+        simonSaysGame.guessBlue()
+        buttonsClicked += 1
+        checkStatus(buttonsClicked)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        winLabel.isHidden = true
+
     }
 }
 
@@ -44,7 +68,20 @@ extension ViewController {
                 } else {
                     self.view.isUserInteractionEnabled = true
                     print("Pattern to match: \(self.simonSaysGame.patternToMatch)")
+                    
                 }
         })
+    }
+    
+    func checkStatus(_ buttonsClicked: Int) {
+        if buttonsClicked==5{
+            if simonSaysGame.wonGame(){
+                winLabel.text = "You win!"
+                winLabel.isHidden = false
+            } else {
+                winLabel.text = "You lose :("
+                winLabel.isHidden = false
+            }
+        }
     }
 }
