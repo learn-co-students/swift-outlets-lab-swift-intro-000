@@ -16,13 +16,52 @@ class ViewController: UIViewController {
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
     
+    func didWin() {
+        
+        if buttonsClicked == 5 {
+            if simonSaysGame.wonGame() == true {
+                winLabel.text = "You Won!"
+            } else {
+                winLabel.text = "Nope, try again."
+            }
+            winLabel.isHidden = false
+        }
+    }
+    
+    @IBAction func redTapped(_ sender: Any) {
+        simonSaysGame.guessRed()
+        buttonsClicked += 1
+        didWin()
+    }
+   
+    @IBAction func greenTapped(_ sender: Any) {
+        simonSaysGame.guessGreen()
+        buttonsClicked += 1
+        didWin()
+    }
+
+    @IBAction func yellowTapped(_ sender: Any) {
+        simonSaysGame.guessYellow()
+        buttonsClicked += 1
+        didWin()
+    }
+    
+    @IBAction func blueTapped(_ sender: Any) {
+        simonSaysGame.guessBlue()
+        buttonsClicked += 1
+        didWin()
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        winLabel.isHidden = true
     }
 }
 
 // MARK: - SimonSays Game Methods
 extension ViewController {
+    
     
     @IBAction func startGameTapped(_ sender: UIButton) {
         UIView.transition(with: startGameButton, duration: 0.9, options: .transitionFlipFromBottom , animations: {
@@ -48,3 +87,4 @@ extension ViewController {
         })
     }
 }
+
