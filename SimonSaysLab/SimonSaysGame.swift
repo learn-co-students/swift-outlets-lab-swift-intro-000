@@ -83,6 +83,7 @@ extension SimonSays {
     }
 
     func wonGame() -> Bool {
+        print("I'am in the wonGame()!")
         return chosenColors == patternToMatch
     }
     
