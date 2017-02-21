@@ -15,9 +15,62 @@ class ViewController: UIViewController {
     @IBOutlet weak var winLabel: UILabel!
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
+    let red = "red"
+    let green = "green"
+    let yellow = "yellow"
+    let blue = "blue"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        winLabel.isHidden = true
+    }
+    
+    @IBAction func pressedRed(_ sender: UIButton) {
+        colorGussed( red )
+    }
+    
+    @IBAction func pressedGreen(_ sender: UIButton) {
+        colorGussed( green )
+    }
+    
+    @IBAction func pressedYellow(_ sender: UIButton) {
+        colorGussed( yellow )
+    }
+    
+    @IBAction func pressedBlue(_ sender: UIButton) {
+        colorGussed( blue )
+    }
+    
+    func colorGussed(_ color: String ) {
+        switch color {
+        case red:
+            simonSaysGame.guessRed()
+        case green:
+            simonSaysGame.guessGreen()
+        case yellow:
+            simonSaysGame.guessYellow()
+        default:
+            simonSaysGame.guessBlue()
+        }
+        checkProgress()
+    }
+    
+    func checkProgress() {
+        buttonsClicked += 1
+        isEndGame()
+    }
+    
+    func isEndGame() {
+        if( buttonsClicked == 5 )
+        {
+            switch simonSaysGame.wonGame() {
+            case true:
+                winLabel.text = "You won!"
+            default:
+                winLabel.text = "Nope, try again."
+            }
+            winLabel.isHidden = false
+        }
     }
 }
 
@@ -30,11 +83,14 @@ extension ViewController {
             }, completion: nil)
         
         displayTheColors()
+        winLabel.isHidden = true
+        buttonsClicked = 0
+        startGameButton.isHidden = true
     }
     
     fileprivate func displayTheColors() {
         self.view.isUserInteractionEnabled = false
-        UIView.transition(with: displayColorView, duration: 1.5, options: .transitionCurlUp, animations: {
+        UIView.transition(with: displayColorView, duration: 0.5, options: .transitionCurlUp, animations: {
             self.displayColorView.backgroundColor = self.simonSaysGame.nextColor()?.colorToDisplay
             self.displayColorView.alpha = 0.0
             self.displayColorView.alpha = 1.0
