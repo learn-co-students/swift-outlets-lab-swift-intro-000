@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
+
     @IBOutlet weak var displayColorView: UIView!
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var winLabel: UILabel!
@@ -18,7 +18,45 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        winLabel.isHidden = true
     }
+    
+    func checkWin() {
+        guard buttonsClicked == simonSaysGame.patternToMatch.count else { return }
+        
+        if simonSaysGame.wonGame() {
+            winLabel.text = "You win!"
+        } else {
+            winLabel.text = "Try Agin!"
+        }
+        
+        winLabel.isHidden = false
+    }
+    
+    @IBAction func redBtn(_ sender: Any) {
+        simonSaysGame.guessRed()
+        buttonsClicked += 1
+        checkWin()
+    }
+    
+    @IBAction func yellowBtn(sender: AnyObject) {
+        simonSaysGame.guessYellow()
+        buttonsClicked += 1
+        checkWin()
+    }
+    
+    @IBAction func greenBtn(_ sender: Any) {
+        simonSaysGame.guessGreen()
+        buttonsClicked += 1
+        checkWin()
+    }
+    
+    @IBAction func blueBtn(_ sender: Any) {
+        simonSaysGame.guessBlue()
+        buttonsClicked +=  1
+        checkWin()
+    }
+    
 }
 
 // MARK: - SimonSays Game Methods
@@ -30,6 +68,7 @@ extension ViewController {
             }, completion: nil)
         
         displayTheColors()
+        
     }
     
     fileprivate func displayTheColors() {
