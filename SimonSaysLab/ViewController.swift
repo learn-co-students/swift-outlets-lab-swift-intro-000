@@ -33,28 +33,29 @@ class ViewController: UIViewController {
         winLabel.isHidden = false
     }
     
-    @IBAction func redBtn(_ sender: Any) {
-        simonSaysGame.guessRed()
+    func clickAndWin() {
         buttonsClicked += 1
         checkWin()
+    }
+    
+    @IBAction func redBtn(_ sender: Any) {
+        simonSaysGame.guessRed()
+        clickAndWin()
     }
     
     @IBAction func yellowBtn(sender: AnyObject) {
         simonSaysGame.guessYellow()
-        buttonsClicked += 1
-        checkWin()
+        clickAndWin()
     }
     
     @IBAction func greenBtn(_ sender: Any) {
         simonSaysGame.guessGreen()
-        buttonsClicked += 1
-        checkWin()
+        clickAndWin()
     }
     
     @IBAction func blueBtn(_ sender: Any) {
         simonSaysGame.guessBlue()
-        buttonsClicked +=  1
-        checkWin()
+        clickAndWin()
     }
     
 }
