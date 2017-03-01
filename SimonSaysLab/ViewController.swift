@@ -9,6 +9,41 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBAction func pressedRed(_ sender: Any) {
+        simonSaysGame.guessRed()
+        print("Red")
+        buttonsClicked += 1
+        if buttonsClicked == 5 {
+            checkAnswer()
+        }
+    }
+    
+    @IBAction func pressedGreen(_ sender: Any) {
+        simonSaysGame.guessGreen()
+        print("Green")
+        buttonsClicked += 1
+        if buttonsClicked == 5 {
+            checkAnswer()
+        }
+    }
+    
+    @IBAction func pressedYellow(_ sender: Any) {
+        simonSaysGame.guessYellow()
+        print("Yellow")
+        buttonsClicked += 1
+        if buttonsClicked == 5 {
+            checkAnswer()
+        }
+    }
+    
+    @IBAction func pressedBlue(_ sender: Any) {
+        simonSaysGame.guessBlue()
+        print("Blue")
+        buttonsClicked += 1
+        if buttonsClicked == 5 {
+            checkAnswer()
+        }
+    }
     
     @IBOutlet weak var displayColorView: UIView!
     @IBOutlet weak var startGameButton: UIButton!
@@ -18,6 +53,18 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        winLabel.isHidden = true
+    }
+    
+    func checkAnswer() {
+        if simonSaysGame.wonGame() {
+            winLabel.text = "You won!"
+            winLabel.isHidden = false
+        } else {
+            winLabel.text = "Try again!"
+            winLabel.isHidden = false
+            simonSaysGame.tryAgainWithTheSamePattern()
+        }
     }
 }
 
@@ -47,4 +94,6 @@ extension ViewController {
                 }
         })
     }
+    
+    
 }
