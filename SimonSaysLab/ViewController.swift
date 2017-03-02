@@ -22,28 +22,28 @@ class ViewController: UIViewController {
     @IBAction func redButton(_ sender: Any) {
         simonSaysGame.guessRed()
         print("Clicked Red")
-        buttonsClicked+=1
+        print(buttonsClicked)
         winGame()
     }
     
     @IBAction func greenButton(_ sender: Any) {
         simonSaysGame.guessGreen()
         print("Clicked Green")
-        buttonsClicked+=1
+        print(buttonsClicked)
         winGame()
     }
 
     @IBAction func yellowButton(_ sender: Any) {
         simonSaysGame.guessYellow()
         print("Clicked Yellow")
-        buttonsClicked+=1
+        print(buttonsClicked)
         winGame()
     }
 
     @IBAction func blueButton(_ sender: Any) {
         simonSaysGame.guessBlue()
         print("Clicked Blue")
-        buttonsClicked+=1
+        print(buttonsClicked)
         winGame()
     }
     
@@ -54,7 +54,9 @@ class ViewController: UIViewController {
     }
 
     func winGame() {
+        buttonsClicked += 1
         if buttonsClicked == 5 {
+            buttonsClicked = 0
             if simonSaysGame.wonGame() == true {
                 winLabel.text = "You won!"
                 winLabel.isHidden = false
@@ -63,7 +65,7 @@ class ViewController: UIViewController {
                 winLabel.isHidden = false
             }
         } else {
-            buttonsClicked += 1
+
         }
 
     }
