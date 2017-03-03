@@ -49,10 +49,14 @@ class ViewController: UIViewController {
 extension ViewController {
     
     @IBAction func startGameTapped(_ sender: UIButton) {
+        simonSaysGame = SimonSays()
+        buttonsClicked = 0
+        
         UIView.transition(with: startGameButton, duration: 0.9, options: .transitionFlipFromBottom , animations: {
             self.startGameButton.isHidden = true
             }, completion: nil)
         
+        winLabel.isHidden = true
         displayTheColors()
     }
     
@@ -76,12 +80,18 @@ extension ViewController {
         if !guess {
             winLabel.text = "You guessed wrong"
             winLabel.isHidden = false
+            simonSaysGame.chosenColors.removeAll()
+            simonSaysGame.patternToMatch.removeAll()
+            self.startGameButton.isHidden = false
         }
         
         buttonsClicked += 1
-        if buttonsClicked >= 5 {
+        if buttonsClicked >= 5 && guess == true {
             winLabel.text = "You win!"
             winLabel.isHidden = false
+            simonSaysGame.chosenColors.removeAll()
+            simonSaysGame.patternToMatch.removeAll()
+            self.startGameButton.isHidden = false
         }
     }
 }
