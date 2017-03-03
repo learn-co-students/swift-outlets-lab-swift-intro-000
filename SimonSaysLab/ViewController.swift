@@ -18,60 +18,22 @@ class ViewController: UIViewController {
     var buttonsClicked = 0
     
     @IBAction func redButton(_ sender: Any) {
-        if !simonSaysGame.guessRed() {
-            winLabel.text = "You guessed wrong"
-            winLabel.isHidden = false
-        }
-        
-        buttonsClicked += 1
-        if buttonsClicked >= 5 {
-            winLabel.text = "You win!"
-            winLabel.isHidden = false
-        }
+        makeGuess(guess: simonSaysGame.guessRed())
 
     }
     
     @IBAction func greenButton(_ sender: Any) {
-        if !simonSaysGame.guessGreen() {
-            winLabel.text = "You guessed wrong"
-            winLabel.isHidden = false
-        }
-        
-        buttonsClicked += 1
-        if buttonsClicked >= 5 {
-            winLabel.text = "You win!"
-            winLabel.isHidden = false
-        }
-        
-        print("clicked")
+        makeGuess(guess: simonSaysGame.guessGreen())
         
     }
     
     @IBAction func yellowButton(_ sender: Any) {
-        if !simonSaysGame.guessYellow() {
-            winLabel.text = "You guessed wrong"
-            winLabel.isHidden = false
-        }
-        
-        buttonsClicked += 1
-        if buttonsClicked >= 5 {
-            winLabel.text = "You win!"
-            winLabel.isHidden = false
-        }
+        makeGuess(guess: simonSaysGame.guessYellow())
 
     }
     
     @IBAction func blueButton(_ sender: Any) {
-        if !simonSaysGame.guessBlue() {
-            winLabel.text = "You guessed wrong"
-            winLabel.isHidden = false
-        }
-        
-        buttonsClicked += 1
-        if buttonsClicked >= 5 {
-            winLabel.text = "You win!"
-            winLabel.isHidden = false
-        }
+        makeGuess(guess: simonSaysGame.guessBlue())
 
     }
 
@@ -80,7 +42,6 @@ class ViewController: UIViewController {
         
         winLabel.isHidden = true
 
-        
     }
 }
 
@@ -109,5 +70,18 @@ extension ViewController {
                     print("Pattern to match: \(self.simonSaysGame.patternToMatch)")
                 }
         })
+    }
+    
+    fileprivate func makeGuess(guess: Bool) {
+        if !guess {
+            winLabel.text = "You guessed wrong"
+            winLabel.isHidden = false
+        }
+        
+        buttonsClicked += 1
+        if buttonsClicked >= 5 {
+            winLabel.text = "You win!"
+            winLabel.isHidden = false
+        }
     }
 }
