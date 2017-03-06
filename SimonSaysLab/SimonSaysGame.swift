@@ -13,6 +13,7 @@ enum Color: Int {
     case red, green, yellow, blue
 }
 
+
 // MARK: - UIColor Display
 extension Color {
     var colorToDisplay: UIColor {
@@ -66,6 +67,7 @@ struct SimonSays {
 }
 
 
+
 // MARK: - Gameplay methods
 extension SimonSays {
 
@@ -111,5 +113,6 @@ extension SimonSays {
     mutating func tryAgainWithTheSamePattern() {
         chosenColors.removeLast()
         // display the colors in order again to the user (up to the turn)
+        
     }
 }
