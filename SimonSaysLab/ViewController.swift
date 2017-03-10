@@ -13,12 +13,83 @@ class ViewController: UIViewController {
     @IBOutlet weak var displayColorView: UIView!
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var winLabel: UILabel!
+	
+	
+	
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		winLabel.isHidden = true
+		
     }
+	
+	func isPlayed(clicked: Int) {
+		if buttonsClicked == 5 {
+			if simonSaysGame.wonGame() == true {
+				winLabel.isHidden = false
+				winLabel.text = "You won!"
+			} else {
+				winLabel.isHidden = false
+				winLabel.text = "Nope, try again."
+				buttonsClicked = 0
+				
+				simonSaysGame.tryAgainWithTheSamePattern()
+			}
+		}
+	}
+
+	@IBAction func redButton(_ sender: Any) {
+	
+		if winLabel.isHidden == false {
+			winLabel.isHidden = true
+		}
+		
+		simonSaysGame.guessRed()
+		buttonsClicked += 1
+		isPlayed(clicked: buttonsClicked)
+		
+	}
+	
+	@IBAction func greenButton(_ sender: Any) {
+		
+		if winLabel.isHidden == false {
+			winLabel.isHidden = true
+		}
+		
+		simonSaysGame.guessGreen()
+		buttonsClicked += 1
+		isPlayed(clicked: buttonsClicked)
+	}
+	
+	@IBAction func yellowButton(_ sender: Any) {
+		
+		if winLabel.isHidden == false {
+			winLabel.isHidden = true
+		}
+		
+		simonSaysGame.guessYellow()
+		buttonsClicked += 1
+		isPlayed(clicked: buttonsClicked)
+	}
+	
+	@IBAction func blueButton(_ sender: Any) {
+	
+		if winLabel.isHidden == false {
+			winLabel.isHidden = true
+		}
+	
+		simonSaysGame.guessBlue()
+		buttonsClicked += 1
+		isPlayed(clicked: buttonsClicked)
+	}
+	
+
+
+
+
 }
 
 // MARK: - SimonSays Game Methods
