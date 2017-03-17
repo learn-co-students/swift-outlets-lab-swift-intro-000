@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
+
     @IBOutlet weak var displayColorView: UIView!
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var winLabel: UILabel!
@@ -18,7 +19,32 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        winLabel.isHidden = true
     }
+    @IBAction func redBtnTapped(_ sender: Any) {
+        simonSaysGame.guessRed()
+    }
+    @IBAction func greenBtnTapped(_ sender: Any) {
+        simonSaysGame.guessGreen()
+    }
+    @IBAction func yellowBtnTapped(_ sender: Any) {
+        simonSaysGame.guessYellow()
+    }
+    @IBAction func blueBtnTapped(_ sender: Any) {
+        simonSaysGame.guessBlue()
+    }
+// wonGame() not working
+//    func didWonorLoss(){
+//        if wonGame() = true{
+//            winLabel.isHidden = false
+//            winLabel.text = "You Win"
+//        }else if wonGame() = false{
+//            winLabel.isHidden = false
+//            winLabel.text = "Try Again"
+//        }
+//    }
+
+    
 }
 
 // MARK: - SimonSays Game Methods
@@ -31,6 +57,8 @@ extension ViewController {
         
         displayTheColors()
     }
+
+    
     
     fileprivate func displayTheColors() {
         self.view.isUserInteractionEnabled = false
@@ -47,4 +75,6 @@ extension ViewController {
                 }
         })
     }
+    
+    
 }
