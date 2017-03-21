@@ -15,11 +15,58 @@ class ViewController: UIViewController {
     @IBOutlet weak var winLabel: UILabel!
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
+
+    @IBAction func pressRed(_ sender: Any) {
+        if buttonsClicked < 5 {
+            buttonsClicked += 1
+            simonSaysGame.guessRed()
+            checkWin()
+        }
+    }
+    
+    @IBAction func pressGreen(_ sender: Any) {
+        if buttonsClicked < 5 {
+            buttonsClicked += 1
+            simonSaysGame.guessGreen()
+            checkWin()
+        }
+    }
+    
+    @IBAction func pressYellow(_ sender: Any) {
+        if buttonsClicked < 5 {
+            buttonsClicked += 1
+            simonSaysGame.guessYellow()
+            checkWin()
+        }
+    }
+    
+    @IBAction func pressBlue(_ sender: Any) {
+        if buttonsClicked < 5 {
+            buttonsClicked += 1
+            simonSaysGame.guessBlue()
+            checkWin()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    func checkWin() {
+        print(buttonsClicked)
+        if buttonsClicked == 5 {
+            buttonsClicked = 0
+            if simonSaysGame.wonGame() == true {
+                winLabel.text = "Congrats!"
+             } else {
+                winLabel.text = "Try Again!"
+            }
+            // reset to allow playing again
+            startGameButton.isHidden = false
+        }
+    }
 }
+
 
 // MARK: - SimonSays Game Methods
 extension ViewController {
@@ -28,7 +75,7 @@ extension ViewController {
         UIView.transition(with: startGameButton, duration: 0.9, options: .transitionFlipFromBottom , animations: {
             self.startGameButton.isHidden = true
             }, completion: nil)
-        
+        simonSaysGame = SimonSays()
         displayTheColors()
     }
     
@@ -44,6 +91,7 @@ extension ViewController {
                 } else {
                     self.view.isUserInteractionEnabled = true
                     print("Pattern to match: \(self.simonSaysGame.patternToMatch)")
+                    self.buttonsClicked = 0
                 }
         })
     }
