@@ -107,6 +107,7 @@ extension SimonSays {
     mutating func guessBlue() {
         makeGuessWith(.blue)
     }
+        
     
     mutating func tryAgainWithTheSamePattern() {
         chosenColors.removeLast()
