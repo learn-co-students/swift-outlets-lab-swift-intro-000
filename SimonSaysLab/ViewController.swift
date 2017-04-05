@@ -15,7 +15,19 @@ class ViewController: UIViewController {
     @IBOutlet weak var winLabel: UILabel!
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
-    
+    @IBAction func redButton(_ sender: Any) {
+        simonSaysGame.guessRed()
+    }
+
+    @IBAction func greenButton(_ sender: Any) {
+        simonSaysGame.guessGreen()
+    }
+    @IBAction func yellowButton(_ sender: Any) {
+        simonSaysGame.guessYellow()
+    }
+    @IBAction func blueButton(_ sender: Any) {
+        simonSaysGame.guessBlue()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
     }
