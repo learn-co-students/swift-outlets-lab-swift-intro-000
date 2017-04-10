@@ -8,7 +8,13 @@
 
 import UIKit
 
+
 class ViewController: UIViewController {
+    
+ 
+    
+    
+    
     
     @IBOutlet weak var displayColorView: UIView!
     @IBOutlet weak var startGameButton: UIButton!
@@ -16,8 +22,102 @@ class ViewController: UIViewController {
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
     
+    @IBAction func redButton(_ sender: Any) {
+        buttonsClicked += 1
+        let guess = simonSaysGame.guessRed()
+        let win = simonSaysGame.wonGame()
+        
+        if !guess {
+            winLabel.text = "Nope, Try Again."
+            winLabel.isHidden = false
+            startGameButton.isHidden = false
+            if self.buttonsClicked > 0{
+                simonSaysGame = SimonSays()
+            }
+        }
+        if win{
+            winLabel.text = "You Won!"
+            winLabel.isHidden = false
+            startGameButton.isHidden = false
+            if self.buttonsClicked > 0{
+                simonSaysGame = SimonSays()
+            }
+        }
+    }
+    
+    @IBAction func greenButton(_ sender: Any) {
+        buttonsClicked += 1
+        let guess = simonSaysGame.guessGreen()
+        let win = simonSaysGame.wonGame()
+        
+        if !guess{
+            winLabel.text = "Nope, Try Again."
+            winLabel.isHidden = false
+            startGameButton.isHidden = false
+            if self.buttonsClicked > 0{
+                simonSaysGame = SimonSays()
+            }
+        }
+        if win{
+            winLabel.text = "You Won!"
+            winLabel.isHidden = false
+            startGameButton.isHidden = false
+            if self.buttonsClicked > 0{
+                simonSaysGame = SimonSays()
+            }
+        }
+    }
+    
+    @IBAction func yellowButton(_ sender: Any) {
+        buttonsClicked += 1
+        let guess = simonSaysGame.guessYellow()
+        let win = simonSaysGame.wonGame()
+        
+        if !guess{
+            winLabel.text = "Nope, Try Again."
+            winLabel.isHidden = false
+            startGameButton.isHidden = false
+            if self.buttonsClicked > 0{
+                simonSaysGame = SimonSays()
+            }
+        }
+        if win{
+            winLabel.text = "You Won!"
+            winLabel.isHidden = false
+            startGameButton.isHidden = false
+            if self.buttonsClicked > 0{
+                simonSaysGame = SimonSays()
+            }
+        }
+    }
+    
+    @IBAction func blueButton(_ sender: Any) {
+        buttonsClicked += 1
+        let guess = simonSaysGame.guessBlue()
+        let win = simonSaysGame.wonGame()
+        
+        if !guess{
+            winLabel.text = "Nope, Try Again."
+            winLabel.isHidden = false
+            startGameButton.isHidden = false
+            if self.buttonsClicked > 0{
+                simonSaysGame = SimonSays()
+            }
+        }
+        if win{
+            winLabel.text = "You Won!"
+            winLabel.isHidden = false
+            startGameButton.isHidden = false
+            if self.buttonsClicked > 0{
+                simonSaysGame = SimonSays()
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        winLabel.isHidden = true
     }
 }
 
@@ -27,9 +127,15 @@ extension ViewController {
     @IBAction func startGameTapped(_ sender: UIButton) {
         UIView.transition(with: startGameButton, duration: 0.9, options: .transitionFlipFromBottom , animations: {
             self.startGameButton.isHidden = true
+            self.winLabel.isHidden = true
+            
             }, completion: nil)
         
+        
+        
         displayTheColors()
+        
+        
     }
     
     fileprivate func displayTheColors() {
