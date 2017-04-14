@@ -84,6 +84,7 @@ class ViewController: UIViewController {
         }
     
     }
+}
 
     // MARK: - SimonSays Game Methods
 extension ViewController {
