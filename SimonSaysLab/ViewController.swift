@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        winLabel.isHidden = true
     }
 }
 
@@ -25,6 +26,10 @@ class ViewController: UIViewController {
 extension ViewController {
     
     @IBAction func startGameTapped(_ sender: UIButton) {
+        
+        winLabel.isHidden = false
+
+        
         UIView.transition(with: startGameButton, duration: 0.9, options: .transitionFlipFromBottom , animations: {
             self.startGameButton.isHidden = true
             }, completion: nil)
@@ -47,4 +52,59 @@ extension ViewController {
                 }
         })
     }
+    
+    
+    @IBAction func redTaped(_ sender: UIButton) {
+        self.simonSaysGame.guessRed()
+        winLabel.text = getGameStatus();
+    }
+    
+    @IBAction func blueTaped(_ sender: UIButton) {
+        self.simonSaysGame.guessBlue()
+        winLabel.text = getGameStatus();
+    }
+    
+    @IBAction func greenTaped(_ sender: UIButton) {
+        self.simonSaysGame.guessGreen()
+        winLabel.text = getGameStatus();
+    }
+    
+    @IBAction func yellowTaped(_ sender: UIButton) {
+        self.simonSaysGame.guessYellow()
+        winLabel.text = getGameStatus();
+    }
+    
+    func getGameStatus() -> String {
+        if didfinish() {
+            if didGameWin() {
+                return "You Won!"
+            }
+            else {
+                self.simonSaysGame.chosenColors.removeAll()
+                return "Nope. try again"
+            }
+        }
+        else {
+            return "Playing"
+        }
+    }
+    
+    
+    func didfinish() -> Bool {
+        if (self.simonSaysGame.patternToMatch.count == self.simonSaysGame.chosenColors.count) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func didGameWin() -> Bool {
+            if (self.simonSaysGame.wonGame()) {
+                return true
+            }
+            else {
+                return false
+            }
+    }
+    
 }
