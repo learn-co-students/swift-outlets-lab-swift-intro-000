@@ -16,8 +16,82 @@ class ViewController: UIViewController {
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
     
+    @IBOutlet weak var redButton: UIButton!
+    @IBAction func redButtonPressed(_ sender: UIButton) {
+        simonSaysGame.guessRed()
+        
+        buttonsClicked += 1
+        
+        if buttonsClicked == 5 {
+        if simonSaysGame.wonGame() {
+            winLabel.text = "You Won!"
+            winLabel.isHidden = false
+        } else {
+            winLabel.text = "Nope, try again!"
+            winLabel.isHidden = false
+        }
+        }
+        
+    }
+    @IBOutlet weak var greenButton: UIButton!
+    @IBAction func greenButtonPressed(_ sender: UIButton) {
+        simonSaysGame.guessGreen()
+        
+        buttonsClicked += 1
+        
+        if buttonsClicked == 5 {
+        if simonSaysGame.wonGame() {
+            winLabel.text = "You Won!"
+            winLabel.isHidden = false
+        } else {
+            winLabel.text = "Nope, try again!"
+            winLabel.isHidden = false
+        }
+        }
+    }
+    
+    @IBOutlet weak var yellowButton: UIButton!
+    @IBAction func yellowButtonPressed(_ sender: UIButton) {
+        simonSaysGame.guessYellow()
+        
+        buttonsClicked += 1
+        
+        if buttonsClicked == 5 {
+            if simonSaysGame.wonGame() {
+            winLabel.text = "You Won!"
+            winLabel.isHidden = false
+        } else {
+            winLabel.text = "Nope, try again!"
+            winLabel.isHidden = false
+        }
+        }
+        
+    }
+    
+    @IBOutlet weak var blueButton: UIButton!
+    @IBAction func blueButtonPressed(_ sender: UIButton) {
+        simonSaysGame.guessBlue()
+        
+        buttonsClicked += 1
+        
+        if buttonsClicked == 5 {
+        if simonSaysGame.wonGame() {
+            winLabel.text = "You Won!"
+            winLabel.isHidden = false
+        } else {
+            winLabel.text = "Nope, try again!"
+            winLabel.isHidden = false
+        }
+        }
+    }
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        winLabel.isHidden = true
     }
 }
 
