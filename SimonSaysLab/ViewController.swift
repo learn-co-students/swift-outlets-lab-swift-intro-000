@@ -65,6 +65,7 @@ class ViewController: UIViewController {
 extension ViewController {
     
     @IBAction func startGameTapped(_ sender: UIButton) {
+        simonSaysGame = SimonSays()
         UIView.transition(with: startGameButton, duration: 0.9, options: .transitionFlipFromBottom , animations: {
             self.startGameButton.isHidden = true
             }, completion: nil)
