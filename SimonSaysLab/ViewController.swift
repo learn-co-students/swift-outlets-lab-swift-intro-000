@@ -13,25 +13,63 @@ class ViewController: UIViewController {
     @IBOutlet weak var displayColorView: UIView!
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var winLabel: UILabel!
+    
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
-    
+	
     override func viewDidLoad() {
+		winLabel.isHidden = true
         super.viewDidLoad()
     }
+
+	func winOrLose() {
+		if buttonsClicked == 5 && simonSaysGame.wonGame() == true {
+			winLabel.text = "You won!"
+			winLabel.isHidden = false
+		} else if buttonsClicked == 5 && simonSaysGame.wonGame() == false {
+			winLabel.text = "Nope, try again."
+			winLabel.isHidden = false
+		}
+	}
+	
+    @IBAction func redButton(_ sender: UIButton!) {
+        simonSaysGame.guessRed()
+        buttonsClicked += 1
+		winOrLose()
+    }
+    
+    @IBAction func greenButton(_ sender: UIButton!) {
+        simonSaysGame.guessGreen()
+        buttonsClicked += 1
+		winOrLose()
+	}
+	
+    @IBAction func yellowButton(_ sender: UIButton!) {
+        simonSaysGame.guessYellow()
+        buttonsClicked += 1
+		winOrLose()
+	}
+
+    @IBAction func blueButton(_ sender: UIButton!) {
+        simonSaysGame.guessBlue()
+        buttonsClicked += 1
+		winOrLose()
+	}
 }
 
 // MARK: - SimonSays Game Methods
 extension ViewController {
-    
-    @IBAction func startGameTapped(_ sender: UIButton) {
+
+
+	    @IBAction func startGameTapped(_ sender: UIButton) {
         UIView.transition(with: startGameButton, duration: 0.9, options: .transitionFlipFromBottom , animations: {
             self.startGameButton.isHidden = true
             }, completion: nil)
         
         displayTheColors()
-    }
-    
+			
+	}
+
     fileprivate func displayTheColors() {
         self.view.isUserInteractionEnabled = false
         UIView.transition(with: displayColorView, duration: 1.5, options: .transitionCurlUp, animations: {
@@ -47,4 +85,5 @@ extension ViewController {
                 }
         })
     }
+	
 }
