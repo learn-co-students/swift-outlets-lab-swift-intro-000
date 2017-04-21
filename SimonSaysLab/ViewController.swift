@@ -13,12 +13,54 @@ class ViewController: UIViewController {
     @IBOutlet weak var displayColorView: UIView!
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var winLabel: UILabel!
+    
+    @IBAction func redButton(_ sender: Any) {
+        simonSaysGame.guessRed()
+        buttonsClicked += 1
+        checkForWin()
+    }
+    
+    @IBAction func greenButton(_ sender: Any) {
+        simonSaysGame.guessGreen()
+        buttonsClicked += 1
+        checkForWin()
+    }
+    
+    @IBAction func yellowButton(_ sender: Any) {
+        simonSaysGame.guessYellow()
+        buttonsClicked += 1
+        checkForWin()
+    }
+    
+    @IBAction func blueButton(_ sender: Any) {
+        simonSaysGame.guessBlue()
+        buttonsClicked += 1
+        checkForWin()
+    }
+    
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        winLabel.isHidden = true
     }
+    
+    func checkForWin() {
+        if buttonsClicked == 5 {
+            if simonSaysGame.wonGame() {
+                winLabel.text = "You won!"
+                winLabel.isHidden = false
+            } else {
+                winLabel.text = "Nope, try again."
+                winLabel.isHidden = false
+                
+                simonSaysGame.tryAgainWithTheSamePattern()
+                buttonsClicked = 0
+            }
+        }
+    }
+    
 }
 
 // MARK: - SimonSays Game Methods
