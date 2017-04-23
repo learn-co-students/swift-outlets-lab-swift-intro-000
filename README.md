@@ -37,7 +37,7 @@ Start by opening up `SimonSaysLab.xcworkspace`. You'll see that some parts of th
 A game engine has already been implemented for you. It is created as the `simonSaysGame` instance variable in the view controller. It has a number of methods already implemented for you that you will find useful:
 
 * There are `guessRed()`, `guessGreen()`, `guessYellow()`, and `guessBlue()` methods written. You can call these when the user makes a guess.
-* There is a `gameWon()` method that will return `true` if the user has made the correct guesses, and `false` if they haven't.
+* There is a `wonGame()` method that will return `true` if the user has made the correct guesses, and `false` if they haven't.
 
 You can use these methods from the view controller to make guesses and determine if a user has won or lost.
 
