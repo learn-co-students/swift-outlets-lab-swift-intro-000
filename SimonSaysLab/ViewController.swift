@@ -8,11 +8,20 @@
 
 import UIKit
 
+enum buttonTapped {
+  case red
+  case green
+  case yellow
+  case blue
+}
+
 class ViewController: UIViewController {
   
   @IBOutlet weak var displayColorView: UIView!
   @IBOutlet weak var startGameButton: UIButton!
   @IBOutlet weak var winLabel: UILabel!
+  
+  
   var simonSaysGame = SimonSays()
   var buttonsClicked = 0
   
@@ -26,8 +35,19 @@ class ViewController: UIViewController {
   
   // lot of debugging statements in that can be removed to make the code shorter.
   
-  func updateAndcheckGameProgress() {
+  func updateAndCheckGameProgress(tapped: buttonTapped) {
     buttonsClicked += 1 // Update number of times a button has been tapped.
+    
+    switch tapped {
+    case .red:
+        simonSaysGame.guessRed()
+    case .green:
+      simonSaysGame.guessGreen()
+    case .yellow:
+      simonSaysGame.guessYellow()
+    case .blue:
+      simonSaysGame.guessBlue()
+    }
     
     // Check game progress.
     if buttonsClicked == simonSaysGame.numberOfColorsToMatch {
@@ -44,31 +64,24 @@ class ViewController: UIViewController {
       print("Select next color")
     }
   }
-  
-  @IBAction func yellowButtonTapped() {
-    // print("Yellow button tapped")
-    simonSaysGame.guessYellow()
-    updateAndcheckGameProgress()
-  }
-  
-  @IBAction func greenButtonTapped() {
-    // print("Green button tapped")
-    simonSaysGame.guessGreen()
-    updateAndcheckGameProgress()
+ 
+  @IBAction func redButtonTapped() {
+    updateAndCheckGameProgress(tapped: .red)
   }
   
   @IBAction func blueButtonTapped() {
-    // print("Blue button tapped")
-    simonSaysGame.guessBlue()
-    updateAndcheckGameProgress()
+    updateAndCheckGameProgress(tapped: .blue)
   }
   
-  @IBAction func redButtonTapped() {
-    // print("Red button tapped")
-    simonSaysGame.guessRed()
-    updateAndcheckGameProgress()
+  @IBAction func yellowButtonTapped() {
+    updateAndCheckGameProgress(tapped: .yellow)
   }
-}
+  
+  @IBAction func greenButtonTapped() {
+    updateAndCheckGameProgress(tapped: .green)
+  }
+  
+ }
 
 // MARK: - SimonSays Game Methods
 extension ViewController {
@@ -77,7 +90,7 @@ extension ViewController {
     UIView.transition(with: startGameButton, duration: 0.9, options: .transitionFlipFromBottom , animations: {
       self.startGameButton.isHidden = true
     }, completion: nil)
-    
+
     displayTheColors()
   }
   
