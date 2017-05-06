@@ -16,9 +16,51 @@ class ViewController: UIViewController {
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
     
+    func checkWin() {
+        if buttonsClicked == 5 {
+            if simonSaysGame.wonGame() {
+                winLabel.text = "Well Done!"
+                winLabel.isHidden = false
+               
+            } else {
+                winLabel.text = "Try again!"
+                winLabel.isHidden = false
+                
+            }
+        }
+    }
+    
+    
+    @IBAction func color1(_ sender: Any) {
+        simonSaysGame.guessRed()
+        buttonsClicked += 1
+        checkWin()
+        
+    }
+    @IBAction func color2(_ sender: Any) {
+        simonSaysGame.guessGreen()
+        buttonsClicked += 1
+        checkWin()
+    }
+    @IBAction func color3(_ sender: Any) {
+        simonSaysGame.guessYellow()
+        buttonsClicked += 1
+        checkWin()
+    }
+    @IBAction func color4(_ sender: Any) {
+        simonSaysGame.guessBlue()
+        buttonsClicked += 1
+        checkWin()
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        winLabel.isHidden = true
     }
+    
+    
+
 }
 
 // MARK: - SimonSays Game Methods
@@ -30,7 +72,11 @@ extension ViewController {
             }, completion: nil)
         
         displayTheColors()
+       
+       
     }
+   
+    
     
     fileprivate func displayTheColors() {
         self.view.isUserInteractionEnabled = false
