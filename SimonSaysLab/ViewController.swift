@@ -16,8 +16,45 @@ class ViewController: UIViewController {
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
     
+    @IBAction func tappedRed(_ sender: UIButton) {
+        simonSaysGame.guessRed()
+        determineResultAfter(clicksCount: buttonsClicked)
+    }
+    
+    func determineResultAfter(clicksCount: Int) {
+        if clicksCount == 4 {
+            winLabel.isHidden = false
+            if simonSaysGame.wonGame() == true {
+                winLabel.text = "You have Won!"
+            } else {
+            winLabel.text = "Nope try again"
+            buttonsClicked = 0
+            }
+        }else {
+            buttonsClicked += 1
+        }
+    }
+    
+    @IBAction func tappedYellow(_ sender: UIButton) {
+        simonSaysGame.guessYellow()
+        determineResultAfter(clicksCount: buttonsClicked)
+    }
+    @IBAction func tappedGreen(_ sender: UIButton) {
+        simonSaysGame.guessGreen()
+        determineResultAfter(clicksCount: buttonsClicked)
+    }
+    
+    
+    @IBAction func tappedBlue(_ sender: UIButton) {
+        simonSaysGame.guessBlue()
+        determineResultAfter(clicksCount: buttonsClicked)
+    }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        winLabel.isHidden = true
     }
 }
 
@@ -25,6 +62,7 @@ class ViewController: UIViewController {
 extension ViewController {
     
     @IBAction func startGameTapped(_ sender: UIButton) {
+        winLabel.isHidden = true
         UIView.transition(with: startGameButton, duration: 0.9, options: .transitionFlipFromBottom , animations: {
             self.startGameButton.isHidden = true
             }, completion: nil)
@@ -44,6 +82,7 @@ extension ViewController {
                 } else {
                     self.view.isUserInteractionEnabled = true
                     print("Pattern to match: \(self.simonSaysGame.patternToMatch)")
+                    self.winLabel.isHidden = true
                 }
         })
     }

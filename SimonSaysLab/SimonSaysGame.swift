@@ -53,6 +53,8 @@ struct SimonSays {
     var patternToMatch = [Color]()
     var colorToDisplay = 0
     let numberOfColorsToMatch: Int
+    var guess = false
+    
     
     init(numberOfColorsToMatch: Int = 5) {
         self.numberOfColorsToMatch = numberOfColorsToMatch
@@ -93,19 +95,19 @@ extension SimonSays {
     }
 
     mutating func guessRed() {
-        makeGuessWith(.red)
+       guess = makeGuessWith(.red)
     }
     
     mutating func guessGreen() {
-        makeGuessWith(.green)
+       guess = makeGuessWith(.green)
     }
     
     mutating func guessYellow() {
-        makeGuessWith(.yellow)
+      guess = makeGuessWith(.yellow)
     }
     
     mutating func guessBlue() {
-        makeGuessWith(.blue)
+        guess = makeGuessWith(.blue)
     }
     
     mutating func tryAgainWithTheSamePattern() {
