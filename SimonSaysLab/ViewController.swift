@@ -13,11 +13,64 @@ class ViewController: UIViewController {
     @IBOutlet weak var displayColorView: UIView!
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var winLabel: UILabel!
-    var simonSaysGame = SimonSays()
-    var buttonsClicked = 0
+    var simonSaysGame: SimonSays!
+    var gameStarted = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+}
+
+// MARK: - IBActions
+extension ViewController {
+    @IBAction func handleRed(_ sender: UIButton) {
+        if !gameStarted { return }
+        handleAfterGuess(simonSaysGame.guessRed())
+    }
+    
+    @IBAction func handleGreen(_ sender: UIButton) {
+        if !gameStarted { return }
+        handleAfterGuess(simonSaysGame.guessGreen())
+    }
+    
+    @IBAction func handleYellow(_ sender: UIButton) {
+        if !gameStarted { return }
+        handleAfterGuess(simonSaysGame.guessYellow())
+    }
+    
+    @IBAction func handleBlue(_ sender: UIButton) {
+        if !gameStarted { return }
+        handleAfterGuess(simonSaysGame.guessBlue())
+    }
+}
+
+// MARK: - Other methods
+extension ViewController {
+    fileprivate func handleAfterGuess(_ correct: Bool) {
+        if !correct {
+            handleLose()
+            return
+        } else if simonSaysGame.wonGame() {
+            handleWin()
+        } else {
+            return
+        }
+    }
+
+    fileprivate func handleLose() {
+        winLabel.text = "You lose!"
+        gameFinished()
+    }
+    
+    fileprivate func handleWin() {
+        winLabel.text = "You win!"
+        gameFinished()
+    }
+    
+    fileprivate func gameFinished() {
+        winLabel.isHidden = false
+        gameStarted = false
+        startGameButton.isHidden = false
     }
 }
 
@@ -25,6 +78,9 @@ class ViewController: UIViewController {
 extension ViewController {
     
     @IBAction func startGameTapped(_ sender: UIButton) {
+        gameStarted = true
+        winLabel.isHidden = true
+        simonSaysGame = SimonSays()
         UIView.transition(with: startGameButton, duration: 0.9, options: .transitionFlipFromBottom , animations: {
             self.startGameButton.isHidden = true
             }, completion: nil)
