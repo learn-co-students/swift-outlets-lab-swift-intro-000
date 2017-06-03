@@ -86,6 +86,10 @@ extension SimonSays {
         return chosenColors == patternToMatch
     }
     
+    func gameOver() -> Bool {
+        return chosenColors.count >= patternToMatch.count
+    }
+
     fileprivate mutating func makeGuessWith(_ color: Color) -> Bool {
         guard chosenColors.count < patternToMatch.count else { return false }
         chosenColors.append(color)
