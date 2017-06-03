@@ -13,13 +13,77 @@ class ViewController: UIViewController {
     @IBOutlet weak var displayColorView: UIView!
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var winLabel: UILabel!
+    @IBOutlet weak var redButton: UIButton!
+    @IBOutlet weak var greenButton: UIButton!
+    @IBOutlet weak var yellowButton: UIButton!
+    @IBOutlet weak var blueButton: UIButton!
     var simonSaysGame = SimonSays()
-    var buttonsClicked = 0
+    var buttonsClicked = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    @IBAction func redClick(_ sender: Any) {
+        simonSaysGame.guessRed()
+        
+        cond()
+    }
+    
+    @IBAction func greenClick(_ sender: Any) {
+        simonSaysGame.guessGreen()
+        
+        cond()
+    }
+    
+    @IBAction func yellowClick(_ sender: Any) {
+        simonSaysGame.guessYellow()
+        
+        cond()
+    }
+    
+    @IBAction func blueClick(_ sender: Any) {
+        simonSaysGame.guessBlue()
+        
+        cond()
+    }
+    
+    func win() -> Bool {
+        print(buttonsClicked)
+        if simonSaysGame.wonGame() {
+            winLabel.text = "you win!"
+            return true
+            
+        }
+        return false
+    }
+    
+    func tryagain() {
+        let sizeOfPattern = simonSaysGame.patternToMatch.count
+        
+        if (buttonsClicked >= sizeOfPattern) {
+            
+            winLabel.text = "Try again!"
+            simonSaysGame.tryAgainWithTheSamePattern()
+            buttonsClicked = 0
+        }
+        
+    }
+    
+    func cond() {
+        if(!win()) {
+            tryagain()
+        }
+        buttonsClicked += 1
+        
+    }
+    
 }
+
+
+
+
+
 
 // MARK: - SimonSays Game Methods
 extension ViewController {
