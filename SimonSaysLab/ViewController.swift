@@ -13,11 +13,54 @@ class ViewController: UIViewController {
     @IBOutlet weak var displayColorView: UIView!
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var winLabel: UILabel!
+    
+    @IBAction func redButtonAction(_ sender: Any) {
+        simonSaysGame.guessRed()
+        guessCount = guessCount + 1
+        print("Guess count is \(guessCount)")
+        countGuesses(guesses: guessCount)
+    }
+    
+    @IBAction func greebButtonAction(_ sender: Any) {
+        simonSaysGame.guessGreen()
+        guessCount = guessCount + 1
+        print("Guess count is \(guessCount)")
+        countGuesses(guesses: guessCount)
+    }
+    
+    @IBAction func blueButtonAction(_ sender: Any) {
+        simonSaysGame.guessBlue()
+        guessCount = guessCount + 1
+        print("Guess count is \(guessCount)")
+        countGuesses(guesses: guessCount)
+    }
+    
+    @IBAction func yellowButtonAction(_ sender: Any) {
+        simonSaysGame.guessYellow()
+        guessCount = guessCount + 1
+        print("Guess count is \(guessCount)")
+        countGuesses(guesses: guessCount)
+    }
+    
+    func countGuesses(guesses: Int) {
+        if guessCount >= 5 {
+            if simonSaysGame.wonGame() {
+                winLabel.text = "You won!"
+                winLabel.isHidden = false
+            } else {
+                winLabel.text = "Try again."
+                winLabel.isHidden = false
+            }
+        }
+    }
+    
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
-    
+    var guessCount = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        winLabel.isHidden = true
     }
 }
 
