@@ -102,7 +102,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Flatiron School";
 				TargetAttributes = {
 					5B6220A41CFE22A100E9C769 = {

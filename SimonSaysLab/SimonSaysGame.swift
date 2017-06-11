@@ -94,18 +94,22 @@ extension SimonSays {
 
     mutating func guessRed() {
         makeGuessWith(.red)
+        print("Guess Red")
     }
     
     mutating func guessGreen() {
         makeGuessWith(.green)
+        print("Guess Green")
     }
     
     mutating func guessYellow() {
         makeGuessWith(.yellow)
+        print("Guess Yellow")
     }
     
     mutating func guessBlue() {
         makeGuessWith(.blue)
+        print("Guess Blue")
     }
     
     mutating func tryAgainWithTheSamePattern() {
