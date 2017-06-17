@@ -9,15 +9,58 @@
 import UIKit
 
 class ViewController: UIViewController {
+    var simonSaysGame = SimonSays()
+    var buttonsClicked = 0
+
     
     @IBOutlet weak var displayColorView: UIView!
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var winLabel: UILabel!
-    var simonSaysGame = SimonSays()
-    var buttonsClicked = 0
+
+    @IBAction func blueBtn(_ sender: Any) {
+        simonSaysGame.guessBlue()
+        print("blue pressed")
+        testButton()
+    }
     
+    @IBAction func yellowBtn(_ sender: Any) {
+        simonSaysGame.guessYellow()
+        print("yellow pressed")
+        testButton()
+    }
+    
+    @IBAction func redBtn(_ sender: Any) {
+        simonSaysGame.guessRed()
+        print("red pressed")
+        testButton()
+    }
+    
+    @IBAction func greenBtn(_ sender: Any) {
+        simonSaysGame.guessGreen()
+        print("green pressed")
+        testButton()
+    }
+       
     override func viewDidLoad() {
         super.viewDidLoad()
+        winLabel.isHidden = true
+    }
+    
+    func testButton(){
+        print("Testing")
+        print(simonSaysGame.chosenColors)
+        print(simonSaysGame.wonGame())
+        buttonsClicked += 1
+        
+        if simonSaysGame.wonGame() && buttonsClicked == simonSaysGame.numberOfColorsToMatch {
+            winLabel.text = "you win!"
+            winLabel.isHidden = false
+        }
+        if !simonSaysGame.wonGame() && buttonsClicked == simonSaysGame.numberOfColorsToMatch {
+            winLabel.text = "you lose!"
+            winLabel.isHidden = false
+        }
+                   // simonSaysGame.tryAgainWithTheSamePattern()
     }
 }
 
