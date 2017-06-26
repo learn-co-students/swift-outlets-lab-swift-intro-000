@@ -16,8 +16,70 @@ class ViewController: UIViewController {
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
     
+    @IBAction func buttonTappedRed(_ sender: UIButton) {
+        simonSaysGame.guessRed()
+        buttonsClicked+=1
+        print(buttonsClicked)
+        winLabel.text = "Good so far!, (\(buttonsClicked))"
+        winLabel.isHidden = false
+        if buttonsClicked == simonSaysGame.numberOfColorsToMatch {
+            checkIfWon()
+        }
+       
+        
+    }
+    
+    @IBAction func buttonTappedGreen(_ sender: UIButton) {
+        simonSaysGame.guessGreen()
+        buttonsClicked+=1
+        print(buttonsClicked)
+        winLabel.text = "Good so far!, (\(buttonsClicked))"
+        winLabel.isHidden = false
+        if buttonsClicked == simonSaysGame.numberOfColorsToMatch {
+            checkIfWon()
+        }
+        
+    }
+    
+    @IBAction func buttonTappedYellow(_ sender: UIButton) {
+        simonSaysGame.guessYellow()
+        buttonsClicked+=1
+        print(buttonsClicked)
+        winLabel.text = "Good so far!, (\(buttonsClicked))"
+        winLabel.isHidden = false
+        if buttonsClicked == simonSaysGame.numberOfColorsToMatch {
+            checkIfWon()
+        }
+        
+    }
+    
+    @IBAction func buttonTappedBlue(_ sender: UIButton) {
+        simonSaysGame.guessBlue()
+        buttonsClicked+=1
+        print(buttonsClicked)
+        winLabel.text = "Good so far!, (\(buttonsClicked))"
+        winLabel.isHidden = false
+        if buttonsClicked == simonSaysGame.numberOfColorsToMatch {
+            checkIfWon()
+        }
+       
+    }
+    
+    func checkIfWon() {
+        if simonSaysGame.wonGame() {
+            winLabel.isHidden = false
+            winLabel.text = "Good Job, You Won!"
+        }
+        else {
+            winLabel.isHidden = false
+            winLabel.text = "You Lost, Nice Try!"
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        winLabel.isHidden = true
     }
 }
 
@@ -29,7 +91,10 @@ extension ViewController {
             self.startGameButton.isHidden = true
             }, completion: nil)
         
+        winLabel.isHidden = true
         displayTheColors()
+        
+        
     }
     
     fileprivate func displayTheColors() {
@@ -46,5 +111,6 @@ extension ViewController {
                     print("Pattern to match: \(self.simonSaysGame.patternToMatch)")
                 }
         })
+        
     }
 }
