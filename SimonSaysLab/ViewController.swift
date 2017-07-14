@@ -13,12 +13,19 @@ class ViewController: UIViewController {
     @IBOutlet weak var displayColorView: UIView!
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var winLabel: UILabel!
+    
+    @IBOutlet weak var redButton: UIButton!
+    @IBOutlet weak var blueButton: UIButton!
+    @IBOutlet weak var yellowButton: UIButton!
+    @IBOutlet weak var greenButton: UIButton!
+    
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
 }
 
 // MARK: - SimonSays Game Methods
@@ -30,6 +37,34 @@ extension ViewController {
             }, completion: nil)
         
         displayTheColors()
+    }
+    
+    @IBAction func redButtonTapped(_ sender: UIButton) {
+        self.simonSaysGame.guessRed()
+        displayLabelText()
+    }
+    
+    @IBAction func blueButtonTapped(_ sender: UIButton) {
+        self.simonSaysGame.guessBlue()
+        displayLabelText()
+    }
+    
+    @IBAction func yellowButtonTapped(_ sender: UIButton) {
+        self.simonSaysGame.guessYellow()
+        displayLabelText()
+    }
+    
+    @IBAction func greenButtonTapped(_ sender: UIButton) {
+        self.simonSaysGame.guessGreen()
+        displayLabelText()
+    }
+    
+    func displayLabelText() {
+        if self.simonSaysGame.wonGame() {
+            winLabel.text = "You won!"
+        } else {
+            winLabel.text = self.simonSaysGame.labelText
+        }
     }
     
     fileprivate func displayTheColors() {
