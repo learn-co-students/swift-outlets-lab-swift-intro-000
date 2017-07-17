@@ -15,6 +15,49 @@ class ViewController: UIViewController {
     @IBOutlet weak var winLabel: UILabel!
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
+   
+    @IBAction func redButton(_ sender: UIButton) {
+        simonSaysGame.guessRed()
+        //print("pressed red button")
+        if fiveGuesses()==true {doWinLabel()}
+    }
+    @IBAction func greenButton(_ sender: UIButton) {
+        simonSaysGame.guessGreen()
+        //print("pressed green button")
+        if fiveGuesses()==true {doWinLabel()}
+    }
+    @IBAction func yellowButton(_ sender: UIButton) {
+        simonSaysGame.guessYellow()
+        //print("pressed yellow button")
+        if fiveGuesses()==true {doWinLabel()}
+    }
+    @IBAction func blueButton(_ sender: UIButton) {
+        simonSaysGame.guessBlue()
+        //print("pressed blue button")
+        if fiveGuesses()==true {doWinLabel()}
+    }
+    
+    func fiveGuesses()->Bool {
+        buttonsClicked+=1
+        //print(buttonsClicked)
+        if buttonsClicked==5 {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func doWinLabel() {
+        let won = simonSaysGame.wonGame()
+        winLabel.isHidden=false
+        //startGameButton.isHidden=false
+        //buttonsClicked=0
+        if won==true {
+            winLabel.text="You won!"
+        } else {
+            winLabel.text="Sorry Try Again."
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +73,10 @@ extension ViewController {
             }, completion: nil)
         
         displayTheColors()
+        
     }
+    
+   
     
     fileprivate func displayTheColors() {
         self.view.isUserInteractionEnabled = false
