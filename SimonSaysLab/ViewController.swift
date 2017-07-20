@@ -16,8 +16,45 @@ class ViewController: UIViewController {
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
     
+    @IBAction func blueButton(_ sender: UIButton) {
+        simonSaysGame.guessBlue()
+        didWeWin()
+    }
+    
+    @IBAction func redButton(_ sender: UIButton) {
+        simonSaysGame.guessRed()
+        didWeWin()
+    }
+    
+    @IBAction func yellowButton(_ sender: UIButton) {
+        simonSaysGame.guessYellow()
+        didWeWin()
+    }
+    
+    @IBAction func greenButton(_ sender: UIButton) {
+        simonSaysGame.guessGreen()
+        didWeWin()
+    }
+    
+    func didWeWin() {
+        buttonsClicked += 1
+        print(buttonsClicked)
+        if buttonsClicked >= 5 && simonSaysGame.wonGame() {
+            print("end of game")
+            print(simonSaysGame.wonGame())
+            winLabel.text = "Congratulations! You are correct!"
+            winLabel.isHidden = false
+        } else if buttonsClicked >= 5 {
+            winLabel.text = "You failed. Beat it loser!"
+            winLabel.isHidden = false
+        }
+        //simonSaysGame.wonGame()
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        winLabel.isHidden = true
     }
 }
 
