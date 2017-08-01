@@ -15,9 +15,44 @@ class ViewController: UIViewController {
     @IBOutlet weak var winLabel: UILabel!
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
+
+    @IBAction func red(_ sender: Any) {
+        simonSaysGame.guessRed()
+        roundPlayed()
+    }
+    
+    @IBAction func green(_ sender: Any) {
+        simonSaysGame.guessGreen()
+        roundPlayed()
+    }
+    
+    @IBAction func yellow(_ sender: Any) {
+        simonSaysGame.guessYellow()
+        roundPlayed()
+    }
+    
+    @IBAction func blue(_ sender: Any) {
+        simonSaysGame.guessBlue()
+        roundPlayed()
+    }
+    
+    
+    func roundPlayed(){
+        buttonsClicked += 1
+        winLabel.isHidden = false
+        if simonSaysGame.wonGame() {
+            winLabel.text = "Yayyy"
+        }
+        if (buttonsClicked >= simonSaysGame.patternToMatch.count) {
+            winLabel.text = "Try Again"
+            buttonsClicked = 0
+            simonSaysGame.tryAgainWithTheSamePattern()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        winLabel.isHidden = true
     }
 }
 
