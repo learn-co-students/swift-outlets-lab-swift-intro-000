@@ -19,6 +19,44 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    @IBAction func redPress(_ sender: Any) {
+        print("Red")
+        simonSaysGame.guessRed()
+        buttonsClicked += 1
+        checkOver(num: buttonsClicked)
+    }
+    @IBAction func greenPress(_ sender: Any) {
+        print("Green")
+        simonSaysGame.guessGreen()
+        buttonsClicked += 1
+        checkOver(num: buttonsClicked)
+    }
+    @IBAction func yellowPress(_ sender: Any) {
+        print("Yellow")
+        simonSaysGame.guessYellow()
+        buttonsClicked += 1
+        checkOver(num: buttonsClicked)
+    }
+    @IBAction func bluePress(_ sender: Any) {
+        print("Blue")
+        simonSaysGame.guessBlue()
+        buttonsClicked += 1
+        checkOver(num: buttonsClicked)
+    }
+    
+    func checkOver(num:Int){
+        if (num == 5){
+            if(simonSaysGame.wonGame()){
+                winLabel.text = "You Won!"
+                winLabel.isHidden = false
+            }else{
+                winLabel.text = "You lose!"
+                winLabel.isHidden = false
+            }
+        }
+    }
+    
 }
 
 // MARK: - SimonSays Game Methods
