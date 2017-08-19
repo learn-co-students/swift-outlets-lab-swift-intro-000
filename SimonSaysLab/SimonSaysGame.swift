@@ -61,6 +61,8 @@ struct SimonSays {
             let randomNumber = Int(arc4random_uniform(4))
             let randomColor = Color(rawValue: randomNumber)!
             patternToMatch.append(randomColor)
+            print(randomColor)
+            print(randomNumber)
         }
     }
 }
