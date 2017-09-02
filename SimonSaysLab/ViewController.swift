@@ -10,16 +10,57 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    
     @IBOutlet weak var displayColorView: UIView!
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var winLabel: UILabel!
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
     
+    @IBAction func bRed(_ sender: Any) {
+        simonSaysGame.guessRed()
+        checkWin()
+        print(simonSaysGame.wonGame())
+    }
+    
+    
+    @IBAction func Bgreen(_ sender: Any) {
+        simonSaysGame.guessGreen()
+        checkWin()
+        print(simonSaysGame.wonGame())
+    }
+    
+    @IBAction func bYellow(_ sender: Any) {
+        simonSaysGame.guessYellow()
+        checkWin()
+        print(simonSaysGame.wonGame())
+    }
+    
+    @IBAction func bBlue(_ sender: Any) {
+        simonSaysGame.guessBlue()
+        checkWin()
+        print(simonSaysGame.wonGame())
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    func checkWin(){
+        buttonsClicked += 1
+        if (buttonsClicked == 5){
+            winLabel.isHidden = false
+        if(simonSaysGame.wonGame()==true ){
+            
+            winLabel.text = "You Won!"
+            
+        } else{
+            
+            winLabel.text = "Nope, try again"
+           }
+        }
+    }
+    
 }
+
 
 // MARK: - SimonSays Game Methods
 extension ViewController {
