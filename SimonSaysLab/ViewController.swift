@@ -13,16 +13,51 @@ class ViewController: UIViewController {
     @IBOutlet weak var displayColorView: UIView!
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var winLabel: UILabel!
+    
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        winLabel.isHidden = true
     }
+    func didWeWin() {
+        if simonSaysGame.wonGame() {
+            winLabel.isHidden = false
+            winLabel.text = "you win"
+        } else {
+            print("Not win")
+        }
+    }
+    
+    @IBAction func redButtonPress(_ sender: UIButton) {
+        simonSaysGame.guessRed()
+        didWeWin()
+    }
+    
+    @IBAction func greenButtonPress(_ sender: UIButton) {
+        simonSaysGame.guessGreen()
+        didWeWin()
+    }
+    
+    @IBAction func yellowButtonPress(_ sender: UIButton) {
+        simonSaysGame.guessYellow()
+        didWeWin()
+    }
+    
+    @IBAction func blueButtonPress(_ sender: UIButton) {
+        simonSaysGame.guessBlue()
+        didWeWin()
+    }
+
+    
 }
 
 // MARK: - SimonSays Game Methods
 extension ViewController {
+    
+    
+    
     
     @IBAction func startGameTapped(_ sender: UIButton) {
         UIView.transition(with: startGameButton, duration: 0.9, options: .transitionFlipFromBottom , animations: {
