@@ -10,6 +10,49 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    //colored buttons
+    @IBAction func redButton(_ sender: UIButton) {
+        simonSaysGame.guessRed()
+        
+        if simonSaysGame.wonGame() == true
+        {
+            winLabel.text = "Won!"
+            winLabel.isHidden = false
+        }
+        
+    }
+    
+    @IBAction func greenButton(_ sender: UIButton) {
+        simonSaysGame.guessGreen()
+        
+        if simonSaysGame.wonGame() == true
+        {
+            winLabel.text = "Won!"
+            winLabel.isHidden = false
+        }
+    }
+    
+    @IBAction func yellowButton(_ sender: UIButton) {
+        simonSaysGame.guessYellow()
+        
+        if simonSaysGame.wonGame() == true
+        {
+            winLabel.text = "Won!"
+            winLabel.isHidden = false
+        }
+    }
+    
+    @IBAction func blueButton(_ sender: UIButton) {
+        simonSaysGame.guessBlue()
+        
+        if simonSaysGame.wonGame() == true
+        {
+            winLabel.text = "Won!"
+            winLabel.isHidden = false
+        }
+    }
+    
+    
     @IBOutlet weak var displayColorView: UIView!
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var winLabel: UILabel!
@@ -18,6 +61,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        winLabel.isHidden = true
     }
 }
 
