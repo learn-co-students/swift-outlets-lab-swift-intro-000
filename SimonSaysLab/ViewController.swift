@@ -18,6 +18,77 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        winLabel.isHidden = true
+    }
+    @IBAction func redViewPressed(_ sender: Any) {
+        buttonsClicked += 1
+        print(buttonsClicked)
+        simonSaysGame.guessRed()
+        print(simonSaysGame.chosenColors)
+        if buttonsClicked == 5 {
+            if simonSaysGame.wonGame() == true {
+                winLabel.isHidden = false
+                winLabel.text = "You Won!"
+                print("Game Won!!!")
+            } else {
+                winLabel.isHidden = false
+                winLabel.text = "Nope, try again"
+                print("Wrong!!")
+                
+            }
+        }
+    }
+    @IBAction func greenViewPressed(_ sender: Any) {
+        buttonsClicked += 1
+        print(buttonsClicked)
+        simonSaysGame.guessGreen()
+        print(simonSaysGame.chosenColors)
+        if buttonsClicked == 5 {
+            if simonSaysGame.wonGame() == true {
+                winLabel.isHidden = false
+                winLabel.text = "You Won!"
+                print("Game Won!!!")
+            } else {
+                winLabel.isHidden = false
+                winLabel.text = "Nope, try again"
+                print("Wrong!!")
+            }
+        }
+        
+    }
+    @IBAction func yellowButtonPressed(_ sender: Any) {
+        buttonsClicked += 1
+        print(buttonsClicked)
+        simonSaysGame.guessYellow()
+        print(simonSaysGame.chosenColors)
+        if buttonsClicked == 5 {
+            if simonSaysGame.wonGame() == true {
+                winLabel.isHidden = false
+                winLabel.text = "You Won!"
+                print("Game Won!!!")
+            } else {
+                winLabel.isHidden = false
+                winLabel.text = "Nope, try again"
+                print("Wrong!!")
+            }
+        }
+    }
+    @IBAction func blueButtonPressed(_ sender: Any) {
+        buttonsClicked += 1
+        print(buttonsClicked)
+        simonSaysGame.guessBlue()
+        print(simonSaysGame.chosenColors)
+        if buttonsClicked == 5 {
+            if simonSaysGame.wonGame() == true {
+                winLabel.isHidden = false
+                winLabel.text = "You Won!"
+                print("Game Won!!!")
+            } else {
+                winLabel.isHidden = false
+                winLabel.text = "Nope, try again"
+                print("Wrong!!")
+            }
+        }
     }
 }
 
@@ -30,6 +101,7 @@ extension ViewController {
             }, completion: nil)
         
         displayTheColors()
+        
     }
     
     fileprivate func displayTheColors() {
