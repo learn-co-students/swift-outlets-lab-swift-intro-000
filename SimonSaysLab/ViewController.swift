@@ -18,6 +18,40 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        winLabel.isHidden = true
+    }
+    
+    @IBAction func redButton(_ sender: Any) {
+        simonSaysGame.guessRed()
+        displayState()
+    }
+    
+    @IBAction func greenButton(_ sender: Any) {
+        simonSaysGame.guessGreen()
+        displayState()
+    }
+    
+    @IBAction func yellowButton(_ sender: Any) {
+        simonSaysGame.guessYellow()
+        displayState()
+    }
+    
+    @IBAction func blueButton(_ sender: Any) {
+        simonSaysGame.guessBlue()
+        displayState()
+    }
+    
+    func displayState() {
+        if(simonSaysGame.chosenColors.count == simonSaysGame.patternToMatch.count) {
+            if (simonSaysGame.wonGame() ) {
+                winLabel.text = "You win!"
+                winLabel.isHidden = false
+            } else {
+                winLabel.text = "Nope, try again"
+                winLabel.isHidden = false
+            }
+        }
+
     }
 }
 
@@ -28,7 +62,7 @@ extension ViewController {
         UIView.transition(with: startGameButton, duration: 0.9, options: .transitionFlipFromBottom , animations: {
             self.startGameButton.isHidden = true
             }, completion: nil)
-        
+        winLabel.isHidden = true
         displayTheColors()
     }
     
