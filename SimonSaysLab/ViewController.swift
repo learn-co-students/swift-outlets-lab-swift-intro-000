@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var winLabel: UILabel!
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
+    guessRed()
     
     override func viewDidLoad() {
         super.viewDidLoad()
