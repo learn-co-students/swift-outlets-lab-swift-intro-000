@@ -15,9 +15,30 @@ class ViewController: UIViewController {
     @IBOutlet weak var winLabel: UILabel!
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
+    @IBAction func redButton(_ sender: Any) {
+        simonSaysGame.guessRed()
+        print("Red pressed")
+        evaluatePress()
+    }
+    @IBAction func greenButton(_ sender: Any) {
+        simonSaysGame.guessGreen()
+        print("Green pressed")
+        evaluatePress()
+    }
+    @IBAction func yellowButton(_ sender: Any) {
+        simonSaysGame.guessYellow()
+        print("Yellow pressed")
+        evaluatePress()
+    }
+    @IBAction func blueButton(_ sender: Any) {
+        simonSaysGame.guessBlue()
+        print("Blue pressed")
+        evaluatePress()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        winLabel.isHidden = true
     }
 }
 
@@ -31,6 +52,17 @@ extension ViewController {
         
         displayTheColors()
     }
+    
+    func evaluatePress() {
+        buttonsClicked += 1
+        if (simonSaysGame.numberOfColorsToMatch == buttonsClicked) {
+            if (simonSaysGame.wonGame()) {
+            winLabel.text = "You won!"
+                winLabel.isHidden = false
+            }
+        }
+    }
+    
     
     fileprivate func displayTheColors() {
         self.view.isUserInteractionEnabled = false
