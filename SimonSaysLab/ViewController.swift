@@ -13,11 +13,56 @@ class ViewController: UIViewController {
     @IBOutlet weak var displayColorView: UIView!
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var winLabel: UILabel!
+    
+    // Method to show that you lose or you win
+    func FinalDecision () {
+        if buttonsClicked == 5 {
+            if simonSaysGame.wonGame() {
+                winLabel.text = "You won, dude!"
+            } else {
+                winLabel.text = "Sorry, try again."
+            }
+            winLabel.isHidden = false
+        }
+    }
+    
+    // Defines the colored buttons
+    @IBAction func red(_ sender: Any) {
+        simonSaysGame.guessRed()
+        buttonsClicked = buttonsClicked + 1
+        FinalDecision()
+        print("Red has been pressed \(buttonsClicked) times. ")
+    }
+    
+    @IBAction func green(_ sender: Any) {
+        simonSaysGame.guessGreen()
+        buttonsClicked = buttonsClicked + 1
+        FinalDecision()
+        print("Green has been pressed \(buttonsClicked) times. ")
+    }
+    
+    @IBAction func yellow(_ sender: Any) {
+        simonSaysGame.guessYellow()
+        buttonsClicked = buttonsClicked + 1
+        FinalDecision()
+        print("Yellow has been pressed \(buttonsClicked) times. ")
+    }
+    
+    @IBAction func blue(_ sender: Any) {
+        simonSaysGame.guessBlue()
+        buttonsClicked = buttonsClicked + 1
+        FinalDecision()
+        print("Blue has been pressed \(buttonsClicked) times. ")
+    }
+    
+    
+    
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        winLabel.isHidden = true
     }
 }
 
