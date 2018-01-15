@@ -18,18 +18,21 @@ class ViewController: UIViewController {
         
         simonSaysGame.guessRed()
         buttonsClicked += 1
+        endResult()
     }
     
     @IBAction func greenButtonPressed(_ sender: UIButton) {
         
         simonSaysGame.guessGreen()
         buttonsClicked += 1
+        endResult()
     }
     
     @IBAction func yellowButtonPressed(_ sender: UIButton) {
         
         simonSaysGame.guessYellow()
         buttonsClicked += 1
+        endResult()
     }
     
     
@@ -37,6 +40,7 @@ class ViewController: UIViewController {
         
         simonSaysGame.guessBlue()
         buttonsClicked += 1
+        endResult()
     }
     
     
@@ -44,7 +48,7 @@ class ViewController: UIViewController {
     var buttonsClicked = 0
     
     func endResult() {
-        if buttonsClicked == 3 {
+        if buttonsClicked == 5 {
             if simonSaysGame.wonGame() {
                 winLabel.text = "You Won!"
                 winLabel.isHidden = false
@@ -58,6 +62,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         winLabel.isHidden = true
+        displayColorView.isHidden = true
     }
 }
 
