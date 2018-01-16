@@ -16,8 +16,29 @@ class ViewController: UIViewController {
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
     
+    @IBAction func green(_ sender: Any) {
+        simonSaysGame.guessGreen()
+    }
+    
+    @IBAction func red(_ sender: Any) {
+        simonSaysGame.guessRed()
+    }
+    
+    @IBAction func Blue(_ sender: Any) {
+        simonSaysGame.guessBlue()
+    }
+    
+    @IBAction func yellow(_ sender: Any) {
+        simonSaysGame.guessYellow()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        winLabel.isHidden = true
+        
+        
+        
+        
     }
 }
 
@@ -48,3 +69,5 @@ extension ViewController {
         })
     }
 }
+
+
