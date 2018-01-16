@@ -16,8 +16,57 @@ class ViewController: UIViewController {
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
     
+    @IBAction func clickRed(_ sender: Any) {
+        simonSaysGame.guessRed()
+        checkIfWin()
+    }
+    
+    @IBAction func clickGreen(_ sender: Any) {
+        simonSaysGame.guessGreen()
+        checkIfWin()
+    }
+    
+    @IBAction func clickYellow(_ sender: Any) {
+        simonSaysGame.guessYellow()
+        checkIfWin()
+    }
+    
+    @IBAction func clickBlue(_ sender: Any) {
+        simonSaysGame.guessBlue()
+        checkIfWin()
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        winLabel.isHidden = true
+    }
+    
+    func checkIfWin() {
+        if simonSaysGame.patternToMatch.count == simonSaysGame.chosenColors.count && self.simonSaysGame.wonGame() {
+            winLabel.text = "You won!"
+            self.startGameButton.isHidden = false
+        } else if simonSaysGame.patternToMatch.count == simonSaysGame.chosenColors.count && self.simonSaysGame.wonGame() == false {
+            winLabel.text = "Nope, try again."
+            self.startGameButton.isHidden = false
+        }
+        else {
+            winLabel.isHidden = false
+            winLabel.text = "\(simonSaysGame.patternToMatch.count - simonSaysGame.chosenColors.count) move(s) remaining..."
+        }
+    }
+    
+    func resetSequence() {
+        simonSaysGame.patternToMatch.removeAll()
+        simonSaysGame.colorToDisplay = 0
+        simonSaysGame.chosenColors.removeAll()
+        winLabel.text = "Playing..."
+        
+        for _ in (0..<simonSaysGame.numberOfColorsToMatch) {
+            let randomNumber = Int(arc4random_uniform(4))
+            let randomColor = Color(rawValue: randomNumber)!
+            simonSaysGame.patternToMatch.append(randomColor)
+        }
     }
 }
 
@@ -25,6 +74,8 @@ class ViewController: UIViewController {
 extension ViewController {
     
     @IBAction func startGameTapped(_ sender: UIButton) {
+        self.resetSequence()
+        
         UIView.transition(with: startGameButton, duration: 0.9, options: .transitionFlipFromBottom , animations: {
             self.startGameButton.isHidden = true
             }, completion: nil)
@@ -33,6 +84,7 @@ extension ViewController {
     }
     
     fileprivate func displayTheColors() {
+        self.winLabel.isHidden = false
         self.view.isUserInteractionEnabled = false
         UIView.transition(with: displayColorView, duration: 1.5, options: .transitionCurlUp, animations: {
             self.displayColorView.backgroundColor = self.simonSaysGame.nextColor()?.colorToDisplay
@@ -44,6 +96,7 @@ extension ViewController {
                 } else {
                     self.view.isUserInteractionEnabled = true
                     print("Pattern to match: \(self.simonSaysGame.patternToMatch)")
+                    self.winLabel.text = "Your turn!"
                 }
         })
     }
