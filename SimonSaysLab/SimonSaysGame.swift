@@ -63,6 +63,7 @@ struct SimonSays {
             patternToMatch.append(randomColor)
         }
     }
+
 }
 
 
@@ -85,10 +86,11 @@ extension SimonSays {
     func wonGame() -> Bool {
         return chosenColors == patternToMatch
     }
-    
+
     fileprivate mutating func makeGuessWith(_ color: Color) -> Bool {
         guard chosenColors.count < patternToMatch.count else { return false }
         chosenColors.append(color)
+        print("makeGuesswith \(color) \(chosenColors) \(patternToMatch)")
         return patternToMatch[chosenColors.count - 1] == color
     }
 
@@ -110,6 +112,7 @@ extension SimonSays {
     
     mutating func tryAgainWithTheSamePattern() {
         chosenColors.removeLast()
+        print("Try again called, chosenColors is now \(chosenColors)")
         // display the colors in order again to the user (up to the turn)
     }
 }
