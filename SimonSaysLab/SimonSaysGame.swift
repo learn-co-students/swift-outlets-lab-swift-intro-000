@@ -57,6 +57,7 @@ struct SimonSays {
     init(numberOfColorsToMatch: Int = 5) {
         self.numberOfColorsToMatch = numberOfColorsToMatch
         
+        // creat array holding the given color pattern
         for _ in (0..<numberOfColorsToMatch) {
             let randomNumber = Int(arc4random_uniform(4))
             let randomColor = Color(rawValue: randomNumber)!
@@ -80,11 +81,13 @@ extension SimonSays {
 
     func sequenceFinished() -> Bool {
         return colorToDisplay > patternToMatch.count
+        
     }
 
     func wonGame() -> Bool {
         return chosenColors == patternToMatch
     }
+    
     
     fileprivate mutating func makeGuessWith(_ color: Color) -> Bool {
         guard chosenColors.count < patternToMatch.count else { return false }
