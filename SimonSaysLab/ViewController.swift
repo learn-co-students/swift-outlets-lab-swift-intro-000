@@ -17,7 +17,44 @@ class ViewController: UIViewController {
     var buttonsClicked = 0
     
     override func viewDidLoad() {
+        winLabel.isHidden = true
         super.viewDidLoad()
+    }
+    
+    @IBAction func tapRed(_ sender: Any) {
+        simonSaysGame.guessRed()
+        buttonsClicked += 1
+        areWeDone()
+    }
+    
+    @IBAction func tapGreen(_ sender: Any) {
+        simonSaysGame.guessGreen()
+        buttonsClicked += 1
+        areWeDone()
+    }
+    
+    @IBAction func tapYellow(_ sender: Any) {
+        simonSaysGame.guessYellow()
+        buttonsClicked += 1
+        areWeDone()
+    }
+    
+    @IBAction func tapBlue(_ sender: Any) {
+        simonSaysGame.guessBlue()
+        buttonsClicked += 1
+        areWeDone()
+    }
+    
+    func areWeDone() {
+        if buttonsClicked < simonSaysGame.numberOfColorsToMatch {
+            return
+        } else {
+            if simonSaysGame.wonGame() {
+                winLabel.text = "You won!"
+            } else {
+                winLabel.text = "Nope, try again."
+            }
+        }
     }
 }
 
@@ -29,6 +66,7 @@ extension ViewController {
             self.startGameButton.isHidden = true
             }, completion: nil)
         
+        winLabel.isHidden = false
         displayTheColors()
     }
     

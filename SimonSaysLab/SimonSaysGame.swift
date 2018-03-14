@@ -46,7 +46,6 @@ extension Color: CustomStringConvertible {
     }
 }
 
-
 struct SimonSays {
     
     var chosenColors = [Color]()
@@ -54,7 +53,7 @@ struct SimonSays {
     var colorToDisplay = 0
     let numberOfColorsToMatch: Int
     
-    init(numberOfColorsToMatch: Int = 5) {
+    init(numberOfColorsToMatch: Int = 3) {
         self.numberOfColorsToMatch = numberOfColorsToMatch
         
         for _ in (0..<numberOfColorsToMatch) {
@@ -89,6 +88,10 @@ extension SimonSays {
     fileprivate mutating func makeGuessWith(_ color: Color) -> Bool {
         guard chosenColors.count < patternToMatch.count else { return false }
         chosenColors.append(color)
+        
+        print(patternToMatch[chosenColors.count - 1] == color)
+        print(color)
+        
         return patternToMatch[chosenColors.count - 1] == color
     }
 
