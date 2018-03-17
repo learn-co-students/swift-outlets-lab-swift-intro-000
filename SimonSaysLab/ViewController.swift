@@ -13,11 +13,70 @@ class ViewController: UIViewController {
     @IBOutlet weak var displayColorView: UIView!
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var winLabel: UILabel!
+
+    
+    
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        winLabel.isHidden = true
+    }
+    
+    @IBAction func redButtonAction(_ sender: Any) {
+        simonSaysGame.guessRed()
+        buttonsClicked == buttonsClicked + 1
+        
+        if buttonsClicked == 5 && simonSaysGame.wonGame() == true {
+            winLabel.text = "Good Job"
+            winLabel.isHidden = false
+            print ("game won")
+            
+            
+            
+        }
+        
+    }
+    
+    @IBAction func greenButtonAction(_ sender: Any) {
+        simonSaysGame.guessGreen()
+        buttonsClicked == buttonsClicked + 1
+        
+        if buttonsClicked == 5 && simonSaysGame.wonGame() == true {
+            winLabel.text = "Good Job"
+            winLabel.isHidden = false
+            print ("game won")
+            
+            
+            
+        }
+    }
+    
+    @IBAction func yellowButtonAction(_ sender: Any) {
+        simonSaysGame.guessYellow()
+        buttonsClicked == buttonsClicked + 1
+        
+        if buttonsClicked == 5 && simonSaysGame.wonGame() == true {
+            winLabel.text = "Good Job"
+            winLabel.isHidden = false
+            print ("game won")
+            
+            
+            
+        }
+    }
+    
+    @IBAction func blueButtonAction(_ sender: Any) {
+        simonSaysGame.guessBlue()
+        buttonsClicked == buttonsClicked + 1
+        if buttonsClicked == 5 && simonSaysGame.wonGame() == true {
+            winLabel.text = "Good Job"
+            winLabel.isHidden = false
+            print ("game won")
+            
+            
+        }
     }
 }
 
