@@ -13,11 +13,35 @@ class ViewController: UIViewController {
     @IBOutlet weak var displayColorView: UIView!
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var winLabel: UILabel!
+    
+    @IBAction func redButton(_ sender: Any) {
+        buttonsClicked += 1
+        simonSaysGame.guessRed()
+       self.checkGameStatus()
+    }
+    @IBAction func greenButton(_ sender: Any) {
+        buttonsClicked += 1
+        simonSaysGame.guessGreen()
+        self.checkGameStatus()
+    }
+    @IBAction func yellowButton(_ sender: Any) {
+        buttonsClicked += 1
+        simonSaysGame.guessYellow()
+        self.checkGameStatus()
+    }
+    @IBAction func blueButton(_ sender: Any) {
+        buttonsClicked += 1
+        simonSaysGame.guessBlue()
+        self.checkGameStatus()
+    }
+    
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        winLabel.isHidden = true
+        
     }
 }
 
@@ -46,5 +70,18 @@ extension ViewController {
                     print("Pattern to match: \(self.simonSaysGame.patternToMatch)")
                 }
         })
+    }
+    
+    fileprivate func checkGameStatus() {
+        if buttonsClicked >= simonSaysGame.patternToMatch.count {
+            
+            winLabel.isHidden = false
+            if simonSaysGame.wonGame() {
+                winLabel.text = "You won!"
+            } else {
+                winLabel.text = "Nope, try again."
+            }
+        }
+
     }
 }
