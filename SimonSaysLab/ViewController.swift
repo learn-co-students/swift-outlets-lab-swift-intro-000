@@ -16,9 +16,55 @@ class ViewController: UIViewController {
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
     
+    
+    @IBAction func redClicked(_ sender: Any) {
+        simonSaysGame.guessRed()
+        buttonsClicked += 1
+        checkWin(buttonClicks: buttonsClicked)
+    }
+    
+    
+    @IBAction func greenClicked(_ sender: Any) {
+        simonSaysGame.guessGreen()
+        buttonsClicked += 1
+        checkWin(buttonClicks: buttonsClicked)
+    }
+    
+    
+    @IBAction func yellowClicked(_ sender: Any) {
+        simonSaysGame.guessYellow()
+        buttonsClicked += 1
+        checkWin(buttonClicks: buttonsClicked)
+    }
+    
+    
+    @IBAction func blueClicked(_ sender: Any) {
+        simonSaysGame.guessBlue()
+        buttonsClicked += 1
+        checkWin(buttonClicks: buttonsClicked)
+    }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        winLabel.isHidden = true
     }
+    
+    func checkWin(buttonClicks: Int) {
+        if buttonClicks == 5 {
+            if simonSaysGame.wonGame() == true {
+                winLabel.text = "You won"
+                winLabel.isHidden = false
+            } else {
+                winLabel.text  = "You lose"
+                winLabel.isHidden = false
+            }
+        }
+    }
+    
+
+    
 }
 
 // MARK: - SimonSays Game Methods
@@ -48,3 +94,6 @@ extension ViewController {
         })
     }
 }
+
+
+
