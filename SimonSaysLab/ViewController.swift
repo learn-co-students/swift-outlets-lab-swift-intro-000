@@ -16,8 +16,36 @@ class ViewController: UIViewController {
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
     
+    @IBAction func redButtonPress(_ sender: Any) {
+        simonSaysGame.guessRed()
+        buttonsClicked += 1
+        checkForWin(buttonClicks: buttonsClicked)
+        print("\(buttonsClicked)")
+        
+        
+    }
+   
+    @IBAction func greenButtonPress(_ sender: Any) {
+        simonSaysGame.guessGreen()
+        buttonsClicked += 1
+        checkForWin(buttonClicks: buttonsClicked)
+    }
+    
+    @IBAction func blueButtonPress(_ sender: Any) {
+        simonSaysGame.guessBlue()
+        buttonsClicked += 1
+        checkForWin(buttonClicks: buttonsClicked)
+    }
+    
+    @IBAction func yellowButtonPress(_ sender: Any) {
+        simonSaysGame.guessYellow()
+        buttonsClicked += 1
+        checkForWin(buttonClicks: buttonsClicked)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        winLabel.isHidden = true
     }
 }
 
@@ -46,5 +74,18 @@ extension ViewController {
                     print("Pattern to match: \(self.simonSaysGame.patternToMatch)")
                 }
         })
+    }
+    
+    func checkForWin(buttonClicks: Int){
+        if buttonClicks == 5{
+            if simonSaysGame.wonGame() == true{
+                winLabel.text = "You won"
+                winLabel.isHidden = false
+            } else {
+                winLabel.text = "You lose"
+                winLabel.isHidden = false
+            }
+        }
+        
     }
 }
