@@ -52,23 +52,29 @@ struct SimonSays {
     var chosenColors = [Color]()
     var patternToMatch = [Color]()
     var colorToDisplay = 0
-    let numberOfColorsToMatch: Int
-    
-    init(numberOfColorsToMatch: Int = 5) {
-        self.numberOfColorsToMatch = numberOfColorsToMatch
-        
-        for _ in (0..<numberOfColorsToMatch) {
-            let randomNumber = Int(arc4random_uniform(4))
-            let randomColor = Color(rawValue: randomNumber)!
-            patternToMatch.append(randomColor)
-        }
-    }
+    let numberOfColorsToMatch = 5
 }
 
 
 // MARK: - Gameplay methods
 extension SimonSays {
 
+    mutating func getPattern() {
+        // Reset for next game play
+        colorToDisplay = 0
+        if chosenColors.count > 0 {
+            chosenColors.removeAll()
+        }
+        if patternToMatch.count > 0 {
+            patternToMatch.removeAll()
+        }
+        for _ in (0..<numberOfColorsToMatch) {
+            let randomNumber = Int(arc4random_uniform(4))
+            let randomColor = Color(rawValue: randomNumber)!
+            patternToMatch.append(randomColor)
+        }
+    }
+    
     mutating func nextColor() -> Color? {
         var color: Color? = nil
         if colorToDisplay < patternToMatch.count {
