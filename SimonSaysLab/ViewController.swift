@@ -15,9 +15,34 @@ class ViewController: UIViewController {
     @IBOutlet weak var winLabel: UILabel!
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
+    @IBAction func redButton(_ sender: Any) {
+        simonSaysGame.guessRed()
+        gameWasWon(won: simonSaysGame.wonGame())
+    }
+    @IBAction func greenButton(_ sender: Any) {
+        simonSaysGame.guessGreen()
+        gameWasWon(won: simonSaysGame.wonGame())
+    }
+    @IBAction func yellowButton(_ sender: Any) {
+        simonSaysGame.guessYellow()
+        gameWasWon(won: simonSaysGame.wonGame())
+    }
+    @IBAction func blueButton(_ sender: Any) {
+        simonSaysGame.guessBlue()
+        gameWasWon(won: simonSaysGame.wonGame())
+    }
+    func gameWasWon(won: Bool){
+        if won{
+            winLabel.isHidden = false
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        winLabel.isHidden = true
+        if simonSaysGame.wonGame() == true{
+            winLabel.isHidden = false
+        }
     }
 }
 
@@ -28,7 +53,6 @@ extension ViewController {
         UIView.transition(with: startGameButton, duration: 0.9, options: .transitionFlipFromBottom , animations: {
             self.startGameButton.isHidden = true
             }, completion: nil)
-        
         displayTheColors()
     }
     
@@ -45,6 +69,7 @@ extension ViewController {
                     self.view.isUserInteractionEnabled = true
                     print("Pattern to match: \(self.simonSaysGame.patternToMatch)")
                 }
-        })
+            }
+        )
     }
 }
