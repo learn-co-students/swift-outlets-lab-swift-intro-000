@@ -15,9 +15,33 @@ class ViewController: UIViewController {
     @IBOutlet weak var winLabel: UILabel!
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
-    
+    @IBAction func pushRed(_ sender: Any) {
+        simonSaysGame.guessRed()
+        print("Red has been selected")
+        buttonsClicked += 1
+        isGameWon()
+    }
+    @IBAction func pushGreen(_ sender: Any) {
+        simonSaysGame.guessGreen()
+        print("Green has been selected")
+        buttonsClicked += 1
+        isGameWon()
+    }
+    @IBAction func pushYellow(_ sender: Any) {
+        simonSaysGame.guessYellow()
+        print("Yellow has been selected")
+        buttonsClicked += 1
+        isGameWon()
+    }
+    @IBAction func pushBlue(_ sender: Any) {
+        simonSaysGame.guessBlue()
+        print("BLUE has been selected")
+        buttonsClicked += 1
+        isGameWon()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        winLabel.isHidden = true
     }
 }
 
@@ -47,4 +71,15 @@ extension ViewController {
                 }
         })
     }
+    
+    func isGameWon () {
+        if simonSaysGame.wonGame() == true {
+            winLabel.text = "Congratulations, you won!"
+            winLabel.isHidden = false
+        } else if buttonsClicked == 5 {
+            winLabel.text = "Please try again"
+            winLabel.isHidden = false
+        }
+    }
+    
 }
