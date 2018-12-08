@@ -10,6 +10,27 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var countClicks = 0
+    
+    
+    @IBAction func blueButton(_ sender: UIButton) {
+        simonSaysGame.guessBlue()
+        checkIfWon()
+        
+    }
+    @IBAction func yellowButton(_ sender: UIButton) {
+        simonSaysGame.guessYellow()
+        checkIfWon()
+    }
+    @IBAction func greenButton(_ sender: UIButton) {
+        simonSaysGame.guessGreen()
+        checkIfWon()
+    }
+    @IBAction func redButton(_ sender: UIButton) {
+        simonSaysGame.guessRed()
+        checkIfWon()
+    }
+    
     @IBOutlet weak var displayColorView: UIView!
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var winLabel: UILabel!
@@ -18,6 +39,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        winLabel.isHidden = true
     }
 }
 
@@ -28,8 +50,9 @@ extension ViewController {
         UIView.transition(with: startGameButton, duration: 0.9, options: .transitionFlipFromBottom , animations: {
             self.startGameButton.isHidden = true
             }, completion: nil)
-        
+        winLabel.isHidden = true
         displayTheColors()
+        simonSaysGame.colorToDisplay = 0
     }
     
     fileprivate func displayTheColors() {
@@ -46,5 +69,23 @@ extension ViewController {
                     print("Pattern to match: \(self.simonSaysGame.patternToMatch)")
                 }
         })
+    }
+    
+    func checkIfWon() {
+        self.countClicks += 1
+        winLabel.text = String(countClicks)
+        if countClicks >= 5 {
+            if simonSaysGame.wonGame() == true {
+                winLabel.text = "You won!"
+                winLabel.isHidden = false
+            } else {
+                print("Choosen colors: \(self.simonSaysGame.chosenColors)")
+                winLabel.text = "Nope, try again"
+                winLabel.isHidden = false
+                simonSaysGame.tryAgainWithTheSamePattern()
+                self.countClicks = 0
+                displayTheColors()
+            }
+        }
     }
 }
