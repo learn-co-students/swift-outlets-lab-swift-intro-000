@@ -94,6 +94,7 @@ extension SimonSays {
 
     mutating func guessRed() {
         makeGuessWith(.red)
+        
     }
     
     mutating func guessGreen() {
