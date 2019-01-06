@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    
     @IBOutlet weak var displayColorView: UIView!
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var winLabel: UILabel!
@@ -18,6 +19,92 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        winLabel.isHidden = true
+    }
+    
+    
+    func checkIfWon()
+    {
+        if simonSaysGame.wonGame()
+        {
+            winLabel.text = "You Won"
+            winLabel.isHidden = false
+        }
+        else
+        {
+            winLabel.text = "You Lost"
+            winLabel.isHidden = false
+        }
+    }
+    
+    func checkIfCompletedEnteringGuess() -> Bool
+    {
+        if buttonsClicked == simonSaysGame.numberOfColorsToMatch
+        {
+            return true
+        }
+        else
+        {
+            return false
+        }
+    }
+  
+    @IBAction func redPressed(_ sender: Any) {
+        
+        simonSaysGame.guessRed()
+        buttonsClicked += 1
+        print("red")
+        if checkIfCompletedEnteringGuess()
+        {
+            checkIfWon()
+        }
+    }
+    
+    @IBAction func greenPressed(_ sender: Any) {
+        
+        simonSaysGame.guessGreen()
+        buttonsClicked += 1
+        
+        print("green")
+
+        if checkIfCompletedEnteringGuess()
+        {
+            if checkIfCompletedEnteringGuess()
+            {
+                checkIfWon()
+            }
+        }
+    }
+    @IBAction func yellowPressed(_ sender: Any) {
+        
+        simonSaysGame.guessYellow()
+        buttonsClicked += 1
+        
+        print("yellow")
+
+        if checkIfCompletedEnteringGuess()
+        {
+            if checkIfCompletedEnteringGuess()
+            {
+                checkIfWon()
+            }
+        }
+    }
+    
+    @IBAction func bluePressed(_ sender: Any) {
+        
+        simonSaysGame.guessBlue()
+        buttonsClicked += 1
+        print("blue")
+
+        if checkIfCompletedEnteringGuess()
+        {
+            if checkIfCompletedEnteringGuess()
+            {
+                checkIfWon()
+            }
+        }
+
     }
 }
 
@@ -47,4 +134,5 @@ extension ViewController {
                 }
         })
     }
+    
 }
