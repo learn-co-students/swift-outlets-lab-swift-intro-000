@@ -9,15 +9,42 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
+
     @IBOutlet weak var displayColorView: UIView!
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var winLabel: UILabel!
     var simonSaysGame = SimonSays()
     var buttonsClicked = 0
     
+    @IBAction func redSquare(_ sender: Any) {
+        winLabel.isHidden = false
+        simonSaysGame.guessRed()
+        buttonsClicked += 1
+        game()
+    }
+    @IBAction func greenSquare(_ sender: Any) {
+        winLabel.isHidden = false
+        simonSaysGame.guessGreen()
+        buttonsClicked += 1
+        game()
+    }
+    @IBAction func yellowSquare(_ sender: Any) {
+        winLabel.isHidden = false
+        simonSaysGame.guessYellow()
+        buttonsClicked += 1
+        game()
+    }
+    @IBAction func blueSquare(_ sender: Any) {
+        winLabel.isHidden = false
+        simonSaysGame.guessBlue()
+        buttonsClicked += 1
+        game()
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        winLabel.isHidden = true
     }
 }
 
@@ -28,7 +55,7 @@ extension ViewController {
         UIView.transition(with: startGameButton, duration: 0.9, options: .transitionFlipFromBottom , animations: {
             self.startGameButton.isHidden = true
             }, completion: nil)
-        
+        winLabel.isHidden = true
         displayTheColors()
     }
     
@@ -46,5 +73,20 @@ extension ViewController {
                     print("Pattern to match: \(self.simonSaysGame.patternToMatch)")
                 }
         })
+    }
+    
+    func game() {
+        if buttonsClicked == simonSaysGame.numberOfColorsToMatch {
+            if simonSaysGame.wonGame() == true {
+                winLabel.text = "You won!"
+                winLabel.isHidden = false
+            } else {
+                winLabel.text = "Nope, try again."
+                winLabel.isHidden = false
+                simonSaysGame.tryAgainWithTheSamePattern()
+                buttonsClicked = 0
+                simonSaysGame.chosenColors.removeAll()
+            }
+        }
     }
 }
